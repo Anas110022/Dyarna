@@ -1,0 +1,29 @@
+{
+  "common": {
+    "appName": "Dyarna",
+    "comingSoon": "Coming soon",
+    "comingSoonBody": "This section is still in development — it will be ready in a later phase."
+  },
+  "tabs": {
+    "account": "Account",
+    "listings": "Listings",
+    "projects": "Projects",
+    "bookings": "Bookings",
+    "chats": "Chats",
+    "services": "Services"
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "slide1Title": "Find your next home with ease",
+    "slide1Body": "Browse houses, apartments and land for sale or rent on one map",
+    "slide2Title": "Every listing is verified and clear",
+    "slide3Title": "Have a property? List it in minutes",
+    "slide3Body": "A quick, simple flow to post your listing and reach thousands of buyers",
+    "start": "Get started"
+  },
+  "auth": {
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "placeholder": "Auth screens will be built in the next phase"
+  }
+}

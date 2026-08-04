@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ديارنا — Dyarna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#0B2B21;
+    --pine-2:#0E3327;
+    --pine-3:#1B4E39;
+    --gold:#C9A85F;
+    --gold-soft:#E4D6AC;
+    --ivory:#F7F4EC;
+    --ivory-2:#EFE9D8;
+    --ink:#16211B;
+    --ink-soft:#5B6960;
+    --line: rgba(201,168,95,0.35);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Cairo',sans-serif;}
+  img{display:block;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 85% -10%, rgba(201,168,95,0.16), transparent 45%),
+      linear-gradient(180deg, var(--pine) 0%, #0E3327 100%);
+    color:var(--ivory);
+    padding:80px 24px 120px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(135deg, rgba(201,168,95,0.045) 0px, rgba(201,168,95,0.045) 1px, transparent 1px, transparent 34px);
+    pointer-events:none;
+  }
+  .eagle{ width:60px; height:60px; margin:0 auto 20px; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.35)); }
+  .brand-ar{ font-family:'Cairo',sans-serif; font-weight:900; font-size:50px; color:var(--gold-soft); margin:0 0 2px; }
+  .brand-en{ font-family:'Cairo',sans-serif; font-weight:400; font-size:13px; letter-spacing:6px; text-transform:uppercase; color:rgba(247,244,236,0.5); margin:0 0 26px; }
+  .hero-tag{ font-size:21px; font-weight:700; max-width:520px; margin:0 auto 12px; line-height:1.7; }
+  .hero-sub{ font-size:14.5px; color:rgba(247,244,236,0.62); max-width:430px; margin:0 auto 30px; line-height:1.9; }
+  .hero-badges{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .badge{ border:1px solid var(--line); color:var(--gold-soft); font-size:12px; padding:8px 16px; border-radius:100px; background:rgba(201,168,95,0.06); }
+
+  .token-strip{ display:flex; justify-content:center; flex-wrap:wrap; background:var(--pine-2); border-top:1px solid var(--line); }
+  .token{ flex:1; min-width:150px; text-align:center; padding:16px 10px; border-inline-start:1px solid var(--line); color:var(--ivory); }
+  .token:first-child{border-inline-start:none;}
+  .token .sw{ width:18px;height:18px;border-radius:50%; margin:0 auto 8px; border:1px solid rgba(255,255,255,0.25); }
+  .token span{display:block; font-size:10.5px; color:rgba(247,244,236,0.5); margin-top:2px;}
+
+  .section{ max-width:1180px; margin:0 auto; padding:110px 24px; display:flex; align-items:center; gap:76px; }
+  .section.reverse{flex-direction:row-reverse;}
+  .section .copy{flex:1;}
+  .section .phonewrap{flex:0 0 300px; position:relative; display:flex; justify-content:center;}
+
+  .step-eyebrow{ display:flex; align-items:center; gap:10px; color:var(--pine-3); font-weight:700; font-size:12.5px; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+  .step-eyebrow::before{ content:""; width:26px; height:1px; background:var(--gold); }
+  .section h2{ font-size:32px; font-weight:800; margin:0 0 16px; color:var(--pine); line-height:1.35; }
+  .section p.desc{ font-size:15px; color:var(--ink-soft); line-height:2; max-width:420px; margin:0 0 22px; }
+  .feat-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px;}
+  .feat-list li{ display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--ink); }
+  .feat-list li svg{flex:none;}
+  .feat-list li .chk{ width:20px; height:20px; border-radius:50%; background:var(--pine); display:flex; align-items:center; justify-content:center; flex:none; }
+
+  /* ---------- REALISTIC PHONE ---------- */
+  .phone{
+    width:296px; height:610px;
+    background:linear-gradient(160deg,#3a3a3c,#111214 60%);
+    border-radius:52px;
+    padding:5px;
+    box-shadow: 0 40px 80px -24px rgba(11,43,33,0.5), 0 0 0 1px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.08);
+    position:relative;
+    z-index:2;
+  }
+  .phone::before{ /* side buttons */
+    content:""; position:absolute; right:-3px; top:120px; width:3px; height:28px; background:#2a2a2c; border-radius:2px 0 0 2px;
+  }
+  .phone::after{
+    content:""; position:absolute; right:-3px; top:160px; width:3px; height:52px; background:#2a2a2c; border-radius:2px 0 0 2px;
+  }
+  .screen{
+    width:100%; height:100%;
+    background:var(--ivory);
+    border-radius:47px;
+    overflow:hidden;
+    position:relative;
+    display:flex; flex-direction:column;
+    font-size:12px;
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.9);
+  }
+  .island{
+    position:absolute; top:14px; left:50%; transform:translateX(-50%);
+    width:96px; height:26px; background:#000; border-radius:16px; z-index:20;
+  }
+  .statusbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 24px 2px; font-size:13px; font-weight:700; color:var(--ink);
+  }
+  .statusbar .icons{display:flex; align-items:center; gap:4px;}
+  .screen-body{flex:1; overflow:hidden; padding:12px 16px 0;}
+  .tabbar{
+    display:flex; justify-content:space-around; align-items:center;
+    padding:9px 6px 22px; border-top:1px solid rgba(11,43,33,0.08);
+    background:rgba(255,255,255,0.96); backdrop-filter:blur(6px);
+  }
+  .tabbar .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:8.5px;color:#A9B3AC;}
+  .tabbar .tab.active{color:var(--pine);}
+  .tabbar .tab svg{width:19px;height:19px;}
+
+  .watermark-eagle{ position:absolute; z-index:1; opacity:0.045; width:440px; top:50%; right:-150px; transform:translateY(-50%); pointer-events:none; }
+  .section.reverse .watermark-eagle{ right:auto; left:-150px; }
+
+  .card{ background:#fff; border-radius:14px; box-shadow:0 8px 20px rgba(11,43,33,0.09); }
+  .gold-btn{ background:var(--pine); color:var(--gold-soft); text-align:center; padding:11px; border-radius:13px; font-weight:700; font-size:12.5px; display:flex; align-items:center; justify-content:center; gap:6px; }
+  .outline-btn{ border:1.5px solid var(--pine); color:var(--pine); text-align:center; padding:9.5px; border-radius:13px; font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; gap:6px;}
+  .tag-verified{ display:inline-flex; align-items:center; gap:4px; background:rgba(201,168,95,0.92); color:#3c2e0e; font-size:9px; font-weight:800; padding:4px 9px; border-radius:100px; backdrop-filter:blur(2px); }
+  .photo{ background-size:cover; background-position:center; position:relative; }
+  .fade-b{ position:absolute; inset:auto 0 0 0; height:60%; background:linear-gradient(0deg, rgba(0,0,0,0.55), transparent); }
+
+  .footer{ background:var(--pine); color:rgba(247,244,236,0.5); text-align:center; padding:54px 20px 44px; font-size:13px; }
+  .footer strong{color:var(--gold-soft); font-family:'Cairo',sans-serif;}
+
+  @media(max-width:880px){
+    .section, .section.reverse{flex-direction:column; text-align:center; gap:44px;}
+    .section p.desc, .feat-list{margin-inline:auto;}
+    .feat-list li{justify-content:center;}
+    .step-eyebrow{justify-content:center;}
+    .watermark-eagle{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ICON DEFS -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+  <g id="i-search"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="i-heart"><path d="M12 21s-7-4.35-9.5-8.5C.8 9 2 5 6 5c2 0 3.5 1.2 4.5 2.8C11.5 6.2 13 5 15 5c4 0 5.2 4 3.5 7.5C19 16.65 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+  <g id="i-heart-fill"><path d="M12 21s-7-4.35-9.5-8.5C.8 9 2 5 6 5c2 0 3.5 1.2 4.5 2.8C11.5 6.2 13 5 15 5c4 0 5.2 4 3.5 7.5C19 16.65 12 21 12 21z" fill="currentColor"/></g>
+  <g id="i-home"><path d="M4 11.5L12 4l8 7.5V20a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1v-8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+  <g id="i-plus"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="i-user"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M5 20c1.2-3.5 4-5.5 7-5.5s5.8 2 7 5.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+  <g id="i-pin"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" fill="currentColor"/></g>
+  <g id="i-bed"><path d="M2 19v-6a2 2 0 012-2h16a2 2 0 012 2v6M2 19v2M22 19v2M2 15v-3a2 2 0 012-2h6v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-bath"><path d="M4 12V6a2 2 0 012-2h1a2 2 0 012 2v1M2 12h20v2a5 5 0 01-5 5H7a5 5 0 01-5-5v-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-ruler"><path d="M3 16l5-5 3 3 8-8M14 3h5v5M2 21h4l15-15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-chat"><path d="M4 4h16a1 1 0 011 1v11a1 1 0 01-1 1H9l-5 4V5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+  <g id="i-phone"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+  <g id="i-cal"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/><line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="i-shield"><path d="M12 3l7 3v6c0 5-3.2 8.2-7 9-3.8-.8-7-4-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-doc"><path d="M6 2h9l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V3a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></g>
+  <g id="i-sliders"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="6" r="2.2" fill="var(--ivory)" stroke="currentColor" stroke-width="2"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="12" r="2.2" fill="var(--ivory)" stroke="currentColor" stroke-width="2"/><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="2"/><circle cx="11" cy="18" r="2.2" fill="var(--ivory)" stroke="currentColor" stroke-width="2"/></g>
+  <g id="i-bell"><path d="M6 9a6 6 0 1112 0v5l1.6 2.4A1 1 0 0118.7 18H5.3a1 1 0 01-.9-1.6L6 14V9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9.5 20a2.5 2.5 0 005 0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+  <g id="i-star"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17l-6.2 3.5 1.5-6.8-5.1-4.7 6.9-.7L12 2z" fill="currentColor"/></g>
+  <g id="i-back"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="i-signal"><rect x="2" y="10" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="7" y="7" width="3" height="8" rx="0.5" fill="currentColor"/><rect x="12" y="4" width="3" height="11" rx="0.5" fill="currentColor"/><rect x="17" y="1" width="3" height="14" rx="0.5" fill="currentColor"/></g>
+  <g id="i-wifi"><path d="M2 8c5.5-5.3 14.5-5.3 20 0M5.5 12c3.6-3.4 9.4-3.4 13 0M9.3 15.7c1.5-1.4 3.9-1.4 5.4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19" r="1.3" fill="currentColor"/></g>
+  <g id="i-battery"><rect x="1" y="6" width="20" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="8" width="14.5" height="7" rx="1.2" fill="currentColor"/><rect x="22" y="9.5" width="2" height="4" rx="1" fill="currentColor"/></g>
+</defs>
+</svg>
+
+<!-- HERO -->
+<div class="hero">
+  <svg class="eagle" viewBox="0 0 200 200" fill="none">
+    <g fill="#C9A85F">
+      <polygon points="100,22 106,40 90,29"/><polygon points="100,15 108,34 92,34"/><polygon points="100,22 94,40 110,29"/>
+      <path d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/>
+    </g>
+  </svg>
+  <div class="brand-ar">ديارنا</div>
+  <div class="brand-en">Dyarna</div>
+  <div class="hero-tag">منصة العقارات في سوريا</div>
+  <p class="hero-sub">بيع، شراء، وإيجار البيوت والشقق والأراضي بثقة — كل عقار موثّق، وكل صفقة واضحة.</p>
+  <div class="hero-badges">
+    <span class="badge">عقارات موثّقة</span>
+    <span class="badge">بيع · إيجار · أراضي</span>
+    <span class="badge">دعم كامل بالعربية</span>
+  </div>
+</div>
+
+<div class="token-strip">
+  <div class="token"><div class="sw" style="background:#0B2B21"></div>Pine<span>الأساسي</span></div>
+  <div class="token"><div class="sw" style="background:#C9A85F"></div>Gold<span>الذهبي</span></div>
+  <div class="token"><div class="sw" style="background:#E4D6AC"></div>Soft Gold<span>ثانوي</span></div>
+  <div class="token"><div class="sw" style="background:#F7F4EC"></div>Ivory<span>الخلفية</span></div>
+  <div class="token"><div class="sw" style="background:#16211B"></div>Ink<span>النص</span></div>
+</div>
+
+<!-- STATUSBAR MACRO used inline everywhere -->
+
+<!-- 00-INTRO ONBOARDING -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">قبل ٠٠ / مقدمة التطبيق</div>
+    <h2>أول شي يشوفه المستخدم</h2>
+    <p class="desc">قبل ما يوصل لشاشة تسجيل الدخول، يمر بـ٣ شاشات مقدمة قصيرة توضح فكرة التطبيق وتبني ثقة من أول لحظة — مع زر "تخطي" لمين مستعجل.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> ٣ شاشات فقط، ما حدا بيصبر أكتر</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> كل شاشة فكرة وحدة بس: البحث، الثقة، النشر</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> "تخطي" دايمًا ظاهر فوق لمين يبغى يدخل على طول</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div style="display:flex;justify-content:flex-start;padding:6px 20px 0;">
+          <span style="font-size:10.5px;color:var(--ink-soft);font-weight:700;">تخطي</span>
+        </div>
+        <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:0;">
+          <div style="width:150px;height:150px;border-radius:50%;background:var(--ivory-2);display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
+            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" style="color:var(--pine)">
+              <path d="M4 11.5L12 4l8 7.5V20a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1v-8.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <circle cx="17" cy="7" r="5" fill="var(--ivory)" stroke="var(--gold)" stroke-width="1.6"/>
+              <path d="M15 7l1.3 1.3L19.5 5.5" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-family:'Cairo';font-weight:800;font-size:19px;color:var(--pine);margin-bottom:10px;line-height:1.4;">دوّر على بيتك القادم<br>بسهولة</div>
+          <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.9;max-width:230px;margin:0;">بيوت، شقق، وأراضي للبيع أو الإيجار من كل سوريا — على خريطة وحدة قدامك.</p>
+        </div>
+        <div style="padding:0 24px 30px;">
+          <div style="display:flex;justify-content:center;gap:6px;margin-bottom:18px;">
+            <div style="width:20px;height:5px;border-radius:3px;background:var(--pine);"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--ivory-2);"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--ivory-2);"></div>
+          </div>
+          <div class="gold-btn">التالي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section reverse">
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div style="display:flex;justify-content:flex-start;padding:6px 20px 0;">
+          <span style="font-size:10.5px;color:var(--ink-soft);font-weight:700;">تخطي</span>
+        </div>
+        <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:0;">
+          <div style="width:150px;height:150px;border-radius:50%;background:var(--ivory-2);display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
+            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" style="color:var(--pine)">
+              <path d="M12 3l7 3v6c0 5-3.2 8.2-7 9-3.8-.8-7-4-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M9 12l2 2 4-4" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-family:'Cairo';font-weight:800;font-size:19px;color:var(--pine);margin-bottom:10px;line-height:1.4;">كل إعلان موثّق<br>وواضح</div>
+          
+        </div>
+        <div style="padding:0 24px 30px;">
+          <div style="display:flex;justify-content:center;gap:6px;margin-bottom:18px;">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--ivory-2);"></div>
+            <div style="width:20px;height:5px;border-radius:3px;background:var(--pine);"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--ivory-2);"></div>
+          </div>
+          <div class="gold-btn">التالي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copy" style="visibility:hidden;height:0;overflow:hidden;">.</div>
+</div>
+
+<div class="section">
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen" style="background:var(--pine);">
+        <div class="statusbar" style="color:var(--ivory);"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ivory)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ivory)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ivory)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:0;">
+          <div style="width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
+            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" style="color:var(--gold-soft)">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="12" y1="8" x2="12" y2="16" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="8" y1="12" x2="16" y2="12" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-family:'Cairo';font-weight:800;font-size:19px;color:var(--gold-soft);margin-bottom:10px;line-height:1.4;">عندك عقار؟<br>انشره بدقايق</div>
+          <p style="font-size:11.5px;color:rgba(247,244,236,0.65);line-height:1.9;max-width:230px;margin:0;">صوّر، حدّد الموقع، واكتب التفاصيل — وخلص، إعلانك جاهز للمراجعة.</p>
+        </div>
+        <div style="padding:0 24px 30px;">
+          <div style="display:flex;justify-content:center;gap:6px;margin-bottom:18px;">
+            <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.25);"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.25);"></div>
+            <div style="width:20px;height:5px;border-radius:3px;background:var(--gold);"></div>
+          </div>
+          <div class="gold-btn">ابدأ الآن</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copy" style="visibility:hidden;height:0;overflow:hidden;">.</div>
+</div>
+
+<!-- 00 LOGIN -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">٠٠ / تسجيل الدخول</div>
+    <h2>حساب موثّق لكل مستخدم</h2>
+    <p class="desc">تسجيل بخطوة وحدة وواضحة — تبويب منفصل لـ"حساب جديد" و"تسجيل الدخول"، واختيار حر بين الجوال أو البريد. جرّب اضغط على الأزرار بالتصميم تحت، هي شغّالة فعليًا.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> فصل واضح: حساب جديد أو تسجيل دخول</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> رقم الجوال أو البريد الإلكتروني — اختيارك</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> ما ينشر أي إعلان إلا من حساب موثّق</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:700px;"><div class="island"></div>
+      <div class="screen" style="background:var(--pine);">
+        <div class="statusbar" style="color:var(--ivory);"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ivory)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ivory)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ivory)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body" style="display:flex;flex-direction:column;justify-content:center;padding-top:0;">
+          <div style="text-align:center;margin-bottom:26px;">
+            <svg width="42" height="42" viewBox="0 0 200 200" fill="none" style="margin:0 auto 10px;"><g fill="#C9A85F"><polygon points="100,22 106,40 90,29"/><polygon points="100,15 108,34 92,34"/><polygon points="100,22 94,40 110,29"/><path d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></g></svg>
+            <div style="font-family:'Cairo';font-weight:900;font-size:22px;color:var(--gold-soft);">ديارنا</div>
+          </div>
+          <div style="display:flex;justify-content:center;gap:14px;margin-bottom:20px;">
+            <span style="color:var(--gold-soft);font-size:11px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px;">عربي</span>
+            <span style="color:rgba(247,244,236,0.4);font-size:11px;">English</span>
+          </div>
+          <div style="display:flex;background:rgba(255,255,255,0.08);border-radius:12px;padding:3px;margin-bottom:14px;">
+            <div id="tab-signup" onclick="dyarnaSetAuthMode('signup')" style="flex:1;text-align:center;background:var(--gold);color:var(--pine);font-size:10.5px;font-weight:800;padding:9px 0;border-radius:9px;cursor:pointer;">حساب جديد</div>
+            <div id="tab-signin" onclick="dyarnaSetAuthMode('signin')" style="flex:1;text-align:center;color:rgba(247,244,236,0.55);font-size:10.5px;font-weight:700;padding:9px 0;cursor:pointer;">تسجيل الدخول</div>
+          </div>
+          <div style="display:flex;gap:16px;justify-content:center;margin-bottom:16px;">
+            <span id="method-phone" onclick="dyarnaSetMethod('phone')" style="color:var(--gold-soft);font-size:10.5px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px;cursor:pointer;">📱 رقم الجوال</span>
+            <span id="method-email" onclick="dyarnaSetMethod('email')" style="color:rgba(247,244,236,0.4);font-size:10.5px;font-weight:700;padding-bottom:4px;cursor:pointer;">✉️ البريد الإلكتروني</span>
+          </div>
+          <div id="field-phone">
+            <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">الاسم الكامل</div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-user"/></svg>
+              <span style="color:rgba(247,244,236,0.35);font-size:12px;">مثال: أنس البكار</span>
+            </div>
+            <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">رقم الهاتف</div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <span style="color:var(--gold-soft);font-size:12px;font-weight:700;">963+</span>
+              <span style="color:rgba(247,244,236,0.35);font-size:12px;">9XX XXX XXX</span>
+            </div>
+          </div>
+          <div id="field-email" style="display:none;">
+            <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">الاسم الكامل</div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-user"/></svg>
+              <span style="color:rgba(247,244,236,0.35);font-size:12px;">مثال: أنس البكار</span>
+            </div>
+            <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">البريد الإلكتروني</div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-user"/></svg>
+              <span style="color:rgba(247,244,236,0.35);font-size:12px;" dir="ltr">name@example.com</span>
+            </div>
+            <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">كلمة المرور</div>
+            <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-shield"/></svg>
+              <span style="color:rgba(247,244,236,0.35);font-size:12px;" dir="ltr">••••••••</span>
+            </div>
+          </div>
+          <div style="color:rgba(247,244,236,0.4);font-size:9px;margin-bottom:14px;">سيصلك رمز تحقق مكوّن من 4 أرقام عبر الرسائل النصية أو البريد الإلكتروني، بحسب الطريقة المختارة</div>
+          <div class="gold-btn" style="margin-bottom:14px;" id="cta-btn">إرسال رمز التحقق وإنشاء حساب</div>
+          <div style="text-align:center;color:rgba(247,244,236,0.4);font-size:9px;line-height:1.8;">بالمتابعة أنت توافق على شروط الاستخدام<br>وسياسة الخصوصية الخاصة بديارنا</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function dyarnaSetAuthMode(mode){
+  const su=document.getElementById('tab-signup'), si=document.getElementById('tab-signin'), cta=document.getElementById('cta-btn');
+  if(mode==='signup'){
+    su.style.background='var(--gold)'; su.style.color='var(--pine)';
+    si.style.background='transparent'; si.style.color='rgba(247,244,236,0.55)';
+    cta.textContent='إرسال رمز التحقق وإنشاء حساب';
+  } else {
+    si.style.background='var(--gold)'; si.style.color='var(--pine)';
+    su.style.background='transparent'; su.style.color='rgba(247,244,236,0.55)';
+    cta.textContent='إرسال رمز التحقق وتسجيل الدخول';
+  }
+}
+function dyarnaSetMethod(m){
+  const mp=document.getElementById('method-phone'), me=document.getElementById('method-email');
+  const fp=document.getElementById('field-phone'), fe=document.getElementById('field-email');
+  if(m==='phone'){
+    mp.style.color='var(--gold-soft)'; mp.style.borderBottom='2px solid var(--gold)';
+    me.style.color='rgba(247,244,236,0.4)'; me.style.borderBottom='none';
+    fp.style.display='block'; fe.style.display='none';
+  } else {
+    me.style.color='var(--gold-soft)'; me.style.borderBottom='2px solid var(--gold)';
+    mp.style.color='rgba(247,244,236,0.4)'; mp.style.borderBottom='none';
+    fe.style.display='block'; fp.style.display='none';
+  }
+}
+</script>
+
+<!-- 00A EMAIL VARIANT -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٠ / التسجيل بالبريد الإلكتروني</div>
+    <h2>هيك تصير الشاشة لما يختار البريد</h2>
+    <p class="desc">لما يختار المستخدم التسجيل بالبريد الإلكتروني، بيعبّي ثلاث خانات بس: الاسم، البريد الإلكتروني، وكلمة المرور — وبعدها رمز تأكيد للبريد.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> الاسم الكامل، البريد الإلكتروني، وكلمة المرور</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> نفس رمز التحقق المكوّن من 4 أرقام، يوصل هالمرة عبر البريد</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:760px;"><div class="island"></div>
+      <div class="screen" style="background:var(--pine);">
+        <div class="statusbar" style="color:var(--ivory);"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ivory)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ivory)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ivory)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body" style="display:flex;flex-direction:column;justify-content:center;padding-top:0;">
+          <div style="text-align:center;margin-bottom:22px;">
+            <svg width="42" height="42" viewBox="0 0 200 200" fill="none" style="margin:0 auto 10px;"><g fill="#C9A85F"><polygon points="100,22 106,40 90,29"/><polygon points="100,15 108,34 92,34"/><polygon points="100,22 94,40 110,29"/><path d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></g></svg>
+            <div style="font-family:'Cairo';font-weight:900;font-size:22px;color:var(--gold-soft);">ديارنا</div>
+          </div>
+          <div style="display:flex;justify-content:center;gap:14px;margin-bottom:20px;">
+            <span style="color:var(--gold-soft);font-size:11px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px;">عربي</span>
+            <span style="color:rgba(247,244,236,0.4);font-size:11px;">English</span>
+          </div>
+          <div style="display:flex;background:rgba(255,255,255,0.08);border-radius:12px;padding:3px;margin-bottom:14px;">
+            <div style="flex:1;text-align:center;background:var(--gold);color:var(--pine);font-size:10.5px;font-weight:800;padding:9px 0;border-radius:9px;">حساب جديد</div>
+            <div style="flex:1;text-align:center;color:rgba(247,244,236,0.55);font-size:10.5px;font-weight:700;padding:9px 0;">تسجيل الدخول</div>
+          </div>
+          <div style="display:flex;gap:16px;justify-content:center;margin-bottom:16px;">
+            <span style="color:rgba(247,244,236,0.4);font-size:10.5px;font-weight:700;padding-bottom:4px;">📱 رقم الجوال</span>
+            <span style="color:var(--gold-soft);font-size:10.5px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px;">✉️ البريد الإلكتروني</span>
+          </div>
+          <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">الاسم الكامل</div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-user"/></svg>
+            <span style="color:rgba(247,244,236,0.35);font-size:12px;">مثال: أنس البكار</span>
+          </div>
+          <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">البريد الإلكتروني</div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-user"/></svg>
+            <span style="color:rgba(247,244,236,0.35);font-size:12px;" dir="ltr">name@example.com</span>
+          </div>
+          <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">كلمة المرور</div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+            <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-shield"/></svg>
+            <span style="color:rgba(247,244,236,0.35);font-size:12px;" dir="ltr">••••••••</span>
+          </div>
+          <div style="color:rgba(247,244,236,0.4);font-size:9px;margin-bottom:14px;">سيصلك رمز تحقق مكوّن من 4 أرقام على هذا البريد الإلكتروني</div>
+          <div class="gold-btn" style="margin-bottom:14px;">إرسال رمز التحقق وإنشاء حساب</div>
+          <div style="text-align:center;color:rgba(247,244,236,0.4);font-size:9px;line-height:1.8;">بالمتابعة أنت توافق على شروط الاستخدام<br>وسياسة الخصوصية الخاصة بديارنا</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 00B OTP -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٠ / التحقق من الرمز</div>
+    <h2>خطوة تأكيد سريعة</h2>
+    <p class="desc">بعد إدخال رقم الجوال أو الإيميل، يوصل رمز مكوّن من 4 أرقام. لو الرقم مسجّل من قبل، بيسجّل دخول مباشرة — ولو رقم جديد، بينشئ له حساب تلقائيًا.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> رمز تحقق من 4 أرقام</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> يميّز تلقائيًا: حساب موجود أو حساب جديد</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> إعادة إرسال الرمز بعد 30 ثانية</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen" style="background:var(--pine);">
+        <div class="statusbar" style="color:var(--ivory);"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ivory)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ivory)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ivory)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body" style="display:flex;flex-direction:column;justify-content:center;padding-top:0;text-align:center;">
+          <svg width="40" height="40" style="margin:0 auto 16px;color:var(--gold)"><use href="#i-shield"/></svg>
+          <div style="font-family:'Cairo';font-weight:800;font-size:16px;color:var(--ivory);margin-bottom:6px;">أدخل رمز التحقق</div>
+          <div style="color:rgba(247,244,236,0.55);font-size:10px;margin-bottom:22px;">تم إرسال رمز مكوّن من 4 أرقام إلى<br><span style="color:var(--gold-soft);font-weight:700;">963+ 9XX XXX XXX</span></div>
+          <div style="display:flex;justify-content:center;gap:10px;margin-bottom:20px;">
+            <div style="width:44px;height:52px;border-radius:12px;background:rgba(255,255,255,0.08);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold-soft);font-size:18px;font-weight:800;">٤</div>
+            <div style="width:44px;height:52px;border-radius:12px;background:rgba(255,255,255,0.08);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold-soft);font-size:18px;font-weight:800;">٧</div>
+            <div style="width:44px;height:52px;border-radius:12px;background:rgba(255,255,255,0.08);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold-soft);font-size:18px;font-weight:800;">١</div>
+            <div style="width:44px;height:52px;border-radius:12px;background:rgba(255,255,255,0.08);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;"></div>
+          </div>
+          <div class="gold-btn" style="margin-bottom:14px;">تأكيد ومتابعة</div>
+          <div style="color:rgba(247,244,236,0.45);font-size:9.5px;">إعادة الإرسال خلال 00:24</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 00C SIGN IN -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">٠٠ / تسجيل الدخول السريع</div>
+    <h2>لمين عنده حساب بالفعل</h2>
+    <p class="desc">تسجيل الدخول أسرع من إنشاء الحساب — خانة أو خانتين بس، سواء بالجوال أو بالبريد الإلكتروني.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> بالجوال: رقم الهاتف فقط، ثم رمز تحقق</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> بالبريد: البريد الإلكتروني وكلمة المرور فقط</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen" style="background:var(--pine);">
+        <div class="statusbar" style="color:var(--ivory);"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ivory)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ivory)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ivory)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body" style="display:flex;flex-direction:column;justify-content:center;padding-top:0;">
+          <div style="text-align:center;margin-bottom:22px;">
+            <svg width="42" height="42" viewBox="0 0 200 200" fill="none" style="margin:0 auto 10px;"><g fill="#C9A85F"><polygon points="100,22 106,40 90,29"/><polygon points="100,15 108,34 92,34"/><polygon points="100,22 94,40 110,29"/><path d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></g></svg>
+            <div style="font-family:'Cairo';font-weight:900;font-size:22px;color:var(--gold-soft);">ديارنا</div>
+          </div>
+          <div style="display:flex;background:rgba(255,255,255,0.08);border-radius:12px;padding:3px;margin-bottom:16px;">
+            <div style="flex:1;text-align:center;color:rgba(247,244,236,0.55);font-size:10.5px;font-weight:700;padding:9px 0;">حساب جديد</div>
+            <div style="flex:1;text-align:center;background:var(--gold);color:var(--pine);font-size:10.5px;font-weight:800;padding:9px 0;border-radius:9px;">تسجيل الدخول</div>
+          </div>
+          <div style="display:flex;gap:16px;justify-content:center;margin-bottom:16px;">
+            <span style="color:var(--gold-soft);font-size:10.5px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px;">📱 رقم الجوال</span>
+            <span style="color:rgba(247,244,236,0.4);font-size:10.5px;font-weight:700;padding-bottom:4px;">✉️ البريد الإلكتروني</span>
+          </div>
+          <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">رقم الهاتف</div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span style="color:var(--gold-soft);font-size:12px;font-weight:700;">963+</span>
+            <span style="color:rgba(247,244,236,0.35);font-size:12px;">9XX XXX XXX</span>
+          </div>
+          <div class="gold-btn" style="margin-bottom:14px;">إرسال رمز التحقق</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 00D SIGN IN EMAIL -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٠ / تسجيل الدخول بالبريد</div>
+    <h2>خانتين وخلص</h2>
+    <p class="desc">لمين سجّل حسابه بالبريد الإلكتروني من الأول — بريد إلكتروني وكلمة مرور وبس، بدون رمز تحقق إضافي.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> البريد الإلكتروني وكلمة المرور فقط</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> رابط "نسيت كلمة المرور" واضح</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen" style="background:var(--pine);">
+        <div class="statusbar" style="color:var(--ivory);"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ivory)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ivory)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ivory)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body" style="display:flex;flex-direction:column;justify-content:center;padding-top:0;">
+          <div style="text-align:center;margin-bottom:22px;">
+            <svg width="42" height="42" viewBox="0 0 200 200" fill="none" style="margin:0 auto 10px;"><g fill="#C9A85F"><polygon points="100,22 106,40 90,29"/><polygon points="100,15 108,34 92,34"/><polygon points="100,22 94,40 110,29"/><path d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></g></svg>
+            <div style="font-family:'Cairo';font-weight:900;font-size:22px;color:var(--gold-soft);">ديارنا</div>
+          </div>
+          <div style="display:flex;background:rgba(255,255,255,0.08);border-radius:12px;padding:3px;margin-bottom:16px;">
+            <div style="flex:1;text-align:center;color:rgba(247,244,236,0.55);font-size:10.5px;font-weight:700;padding:9px 0;">حساب جديد</div>
+            <div style="flex:1;text-align:center;background:var(--gold);color:var(--pine);font-size:10.5px;font-weight:800;padding:9px 0;border-radius:9px;">تسجيل الدخول</div>
+          </div>
+          <div style="display:flex;gap:16px;justify-content:center;margin-bottom:16px;">
+            <span style="color:rgba(247,244,236,0.4);font-size:10.5px;font-weight:700;padding-bottom:4px;">📱 رقم الجوال</span>
+            <span style="color:var(--gold-soft);font-size:10.5px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px;">✉️ البريد الإلكتروني</span>
+          </div>
+          <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">البريد الإلكتروني</div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-user"/></svg>
+            <span style="color:rgba(247,244,236,0.35);font-size:12px;" dir="ltr">name@example.com</span>
+          </div>
+          <div style="color:rgba(247,244,236,0.6);font-size:10px;margin-bottom:6px;">كلمة المرور</div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid var(--line);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <svg width="14" height="14" style="color:var(--gold-soft)"><use href="#i-shield"/></svg>
+            <span style="color:rgba(247,244,236,0.35);font-size:12px;" dir="ltr">••••••••</span>
+          </div>
+          <div style="text-align:left;color:var(--gold-soft);font-size:9px;font-weight:700;margin-bottom:16px;text-decoration:underline;text-underline-offset:3px;">نسيت كلمة المرور؟</div>
+          <div class="gold-btn">تسجيل الدخول</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 HOME -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">٠١ / الرئيسية (الإعلانات)</div>
+    <h2>الصفحة الرئيسية — بسيطة ومرتبة</h2>
+    <p class="desc">نفس بنية المرجع، بس فقاعات الأسعار موحّدة الشكل تمامًا — بس السعر، بدون نجمة أو علامة صح أو أي إضافة. البساطة هون أهم من أي زخرفة.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> كل فقاعة نفس اللون ونفس الشكل، بس السعر</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> التوثيق يظهر جوا تفاصيل العقار نفسه، مو على الخريطة</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> ترتيب أنظف: تبويب، فلاتر، فئات، وخريطة صافية</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div style="height:100%;position:relative;background:#EFEADA;overflow:hidden;">
+          <svg width="100%" height="100%" viewBox="0 0 300 610" style="position:absolute;inset:0;">
+            <rect width="300" height="610" fill="#EFEADA"/>
+            <line x1="0" y1="260" x2="300" y2="270" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="0" y1="430" x2="300" y2="440" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="0" y1="540" x2="300" y2="548" stroke="#DCD4BC" stroke-width="1.6"/>
+            <line x1="65" y1="0" x2="55" y2="610" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="150" y1="0" x2="160" y2="610" stroke="#DCD4BC" stroke-width="1.6"/>
+            <line x1="225" y1="0" x2="240" y2="610" stroke="#DCD4BC" stroke-width="2"/>
+          </svg>
+
+          <!-- top: rent/sale tabs + separate filters button -->
+          <div style="position:absolute;top:14px;right:14px;left:14px;z-index:6;">
+            <div style="display:flex;gap:6px;margin-bottom:8px;">
+              <div class="card" style="flex:1;padding:4px;display:flex;gap:4px;">
+                <div style="flex:1;text-align:center;color:var(--pine);font-size:10.5px;font-weight:800;padding:8px 0;border-bottom:2px solid var(--pine);">للإيجار</div>
+                <div style="flex:1;text-align:center;color:#B7AF98;font-size:10.5px;font-weight:700;padding:8px 0;">للبيع</div>
+              </div>
+              <div class="card" style="padding:8px 13px;display:flex;align-items:center;gap:5px;">
+                <svg width="14" height="14" style="color:var(--pine)"><use href="#i-sliders"/></svg>
+                <span style="font-size:10px;font-weight:800;color:var(--pine);">فلاتر</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;overflow:hidden;margin-bottom:8px;">
+              <div class="gold-btn" style="font-size:9px;padding:6px 11px;white-space:nowrap;">الكل</div>
+              <div style="font-size:9px;padding:6px 11px;white-space:nowrap;border-radius:13px;color:var(--ink-soft);background:#fff;font-weight:700;box-shadow:0 3px 8px rgba(11,43,33,0.08);">شقة</div>
+              <div style="font-size:9px;padding:6px 11px;white-space:nowrap;border-radius:13px;color:var(--ink-soft);background:#fff;font-weight:700;box-shadow:0 3px 8px rgba(11,43,33,0.08);">فيلا</div>
+              <div style="font-size:9px;padding:6px 11px;white-space:nowrap;border-radius:13px;color:var(--ink-soft);background:#fff;font-weight:700;box-shadow:0 3px 8px rgba(11,43,33,0.08);">بيت</div>
+              <div style="font-size:9px;padding:6px 11px;white-space:nowrap;border-radius:13px;color:var(--ink-soft);background:#fff;font-weight:700;box-shadow:0 3px 8px rgba(11,43,33,0.08);">أرض</div>
+            </div>
+          </div>
+
+          <!-- price bubbles: uniform, price only, no badges — spread across full map -->
+          <div style="position:absolute;top:170px;right:50px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$60K</div>
+
+          <div style="position:absolute;top:200px;left:60px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$124K</div>
+
+          <div style="position:absolute;top:250px;right:150px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$185K</div>
+
+          <div style="position:absolute;top:310px;right:44px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$42K</div>
+
+          <div style="position:absolute;top:330px;left:100px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$750K</div>
+
+          <div style="position:absolute;top:390px;right:130px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$76K</div>
+
+          <div style="position:absolute;top:410px;left:56px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$68K</div>
+
+          <div style="position:absolute;top:460px;right:70px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$34K</div>
+
+          <div style="position:absolute;top:480px;left:130px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;box-shadow:0 3px 8px rgba(11,43,33,0.18);">$1.2M</div>
+
+          <div style="position:absolute;top:250px;right:230px;width:14px;height:14px;border-radius:50%;background:#3B82F6;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>
+
+          <!-- left stacked icons: layers + locate -->
+          <div style="position:absolute;left:14px;bottom:130px;display:flex;flex-direction:column;gap:8px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,0.15);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="color:var(--pine)"><path d="M12 3L2 8l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M2 13l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            </div>
+            <div style="width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,0.15);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="color:var(--pine)"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+
+          <!-- right favorites button -->
+          <div style="position:absolute;right:14px;bottom:130px;">
+            <div class="card" style="padding:9px 12px;display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <svg width="15" height="15" style="color:var(--gold)"><use href="#i-heart-fill"/></svg>
+              <span style="font-size:8px;color:var(--ink-soft);font-weight:700;">المفضلة</span>
+            </div>
+          </div>
+
+          <!-- bottom summary bar -->
+          <div style="position:absolute;bottom:78px;right:14px;left:14px;">
+            <div class="card" style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;">
+              <span style="font-size:9.5px;font-weight:700;color:var(--pine);display:flex;align-items:center;gap:4px;">☰ قائمة</span>
+              <span style="font-size:9.5px;color:var(--ink-soft);">٥٣ من ٧٬٢٩١ إعلان</span>
+              <span style="font-size:9.5px;font-weight:800;color:#2BAA5E;display:flex;align-items:center;gap:3px;">＋ إضافة</span>
+            </div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="tab"><svg><use href="#i-user"/></svg><span>حسابي</span></div>
+          <div class="tab active"><svg><use href="#i-pin"/></svg><span>الإعلانات</span></div>
+          <div class="tab"><svg><use href="#i-home"/></svg><span>المشاريع</span></div>
+          <div class="tab"><svg><use href="#i-cal"/></svg><span>الحجوزات</span></div>
+          <div class="tab"><svg><use href="#i-chat"/></svg><span>الشات</span></div>
+          <div class="tab"><svg><use href="#i-sliders"/></svg><span>الخدمات</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 01B MAP PIN TAP -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠١ / لما تضغط على فقاعة</div>
+    <h2>معاينة سريعة، بدون ما تفارق الخريطة</h2>
+    <p class="desc">الضغط على أي سعر ما بيوديك لصفحة جديدة فورًا — بتطلع بطاقة صغيرة فوق الخريطة فيها أهم المعلومات، وتقدر تسكرها وترجع تتصفح، أو تدخل لتفاصيل العقار كاملة لو عجبك.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> صورة، عنوان، موقع، وأهم المواصفات بنظرة وحدة</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> زر "✕" يسكر البطاقة ويرجعك للخريطة فورًا</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> ضغطة تانية على البطاقة نفسها = تفاصيل العقار كاملة</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div style="height:100%;position:relative;background:#EFEADA;overflow:hidden;">
+          <svg width="100%" height="100%" viewBox="0 0 300 610" style="position:absolute;inset:0;">
+            <rect width="300" height="610" fill="#EFEADA"/>
+            <line x1="0" y1="180" x2="300" y2="190" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="0" y1="340" x2="300" y2="330" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="70" y1="0" x2="60" y2="610" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="200" y1="0" x2="215" y2="610" stroke="#DCD4BC" stroke-width="2"/>
+          </svg>
+
+          <!-- dimmed overlay to focus attention on the sheet -->
+          <div style="position:absolute;inset:0;background:rgba(11,43,33,0.28);z-index:5;"></div>
+
+          <!-- a few faded bubbles still visible behind the overlay -->
+          <div style="position:absolute;top:120px;right:60px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;opacity:0.55;">$60K</div>
+          <div style="position:absolute;top:160px;left:60px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:6px 12px;border-radius:100px;opacity:0.55;">$124K</div>
+
+          <!-- the tapped pin, highlighted -->
+          <div style="position:absolute;top:230px;right:120px;background:var(--gold);color:var(--pine);font-size:11px;font-weight:900;padding:7px 14px;border-radius:100px;box-shadow:0 6px 16px rgba(0,0,0,0.35);z-index:6;transform:scale(1.1);">$185K</div>
+
+          <!-- bottom sheet preview card -->
+          <div style="position:absolute;bottom:78px;right:14px;left:14px;z-index:7;">
+            <div class="card" style="overflow:hidden;">
+              <div style="display:flex;justify-content:flex-end;padding:8px 8px 0;">
+                <div style="width:24px;height:24px;border-radius:50%;background:var(--ivory-2);display:flex;align-items:center;justify-content:center;">
+                  <span style="color:var(--ink-soft);font-size:12px;font-weight:700;">✕</span>
+                </div>
+              </div>
+              <div style="display:flex;gap:11px;padding:4px 14px 14px;">
+                <div class="photo" style="width:76px;height:76px;border-radius:12px;flex:none;background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop');"></div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-weight:800;font-size:12.5px;">فيلا حديثة</div>
+                  <div style="color:#9AA79E;font-size:9.5px;display:flex;align-items:center;gap:3px;margin:2px 0 5px;"><svg width="9" height="9"><use href="#i-pin"/></svg>المالكي، دمشق</div>
+                  <div style="display:flex;gap:8px;margin-bottom:5px;">
+                    <span style="font-size:9px;color:var(--ink-soft);display:flex;align-items:center;gap:2px;"><svg width="10" height="10" style="color:var(--pine)"><use href="#i-bed"/></svg>4</span>
+                    <span style="font-size:9px;color:var(--ink-soft);display:flex;align-items:center;gap:2px;"><svg width="10" height="10" style="color:var(--pine)"><use href="#i-bath"/></svg>3</span>
+                    <span style="font-size:9px;color:var(--ink-soft);display:flex;align-items:center;gap:2px;"><svg width="10" height="10" style="color:var(--pine)"><use href="#i-ruler"/></svg>320م²</span>
+                  </div>
+                  <div style="color:var(--pine);font-weight:900;font-size:14px;">$185,000</div>
+                </div>
+              </div>
+              <div style="padding:0 14px 14px;">
+                <div class="gold-btn">عرض التفاصيل كاملة</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 DETAILS -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٢ / التفاصيل</div>
+    <h2>تفاصيل العقار</h2>
+    <p class="desc">معرض يعرض كل صور البيت (مو صورة وحدة)، وبيانات كاملة — المساحة، الغرف، الطابق، سنة البناء — تساعد المشتري ياخذ قراره بدون ما يحتاج يتصل ويسأل.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> معرض صور كامل لكل زوايا البيت</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> كل التفاصيل: المساحة، الغرف، الطابق، سنة البناء</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> زر تواصل مباشر مع المالك أو الوسيط</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:940px;"><div class="island"></div>
+      <div class="screen" style="border-radius:47px;">
+        <div class="photo" style="height:190px;background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&h=600&fit=crop');flex:none;">
+          <div class="fade-b" style="height:100%;background:linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 35%, rgba(0,0,0,0.25) 100%);"></div>
+          <div style="position:absolute;top:18px;right:18px;left:18px;display:flex;justify-content:space-between;z-index:5;">
+            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" style="color:var(--pine)"><use href="#i-back"/></svg></div>
+            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" style="color:var(--pine)"><use href="#i-heart"/></svg></div>
+          </div>
+          <span class="tag-verified" style="position:absolute;bottom:12px;right:14px;">✓ عقار موثّق</span>
+          <span style="position:absolute;bottom:12px;left:14px;color:#fff;font-size:9.5px;background:rgba(0,0,0,0.35);padding:3px 8px;border-radius:100px;">١ / ١٨</span>
+        </div>
+        <div style="display:flex;gap:5px;padding:8px 16px;background:#fff;">
+          <div class="photo" style="width:44px;height:44px;border-radius:9px;flex:none;background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=150&h=150&fit=crop');box-shadow:inset 0 0 0 2px var(--gold);"></div>
+          <div class="photo" style="width:44px;height:44px;border-radius:9px;flex:none;background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=150&h=150&fit=crop');"></div>
+          <div class="photo" style="width:44px;height:44px;border-radius:9px;flex:none;background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=150&h=150&fit=crop');"></div>
+          <div class="photo" style="width:44px;height:44px;border-radius:9px;flex:none;background-image:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=150&h=150&fit=crop');"></div>
+          <div class="photo" style="width:44px;height:44px;border-radius:9px;flex:none;position:relative;background-image:url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=150&h=150&fit=crop');">
+            <div style="position:absolute;inset:0;background:rgba(11,43,33,0.72);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;">+13</div>
+          </div>
+        </div>
+        <div class="screen-body" style="padding-top:10px;">
+          <div style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);">شقة مطلة على البحر</div>
+          <div style="color:#9AA79E;font-size:10px;margin:3px 0 9px;display:flex;align-items:center;gap:3px;"><svg width="10" height="10"><use href="#i-pin"/></svg>الشاطئ الأزرق، اللاذقية</div>
+          <div style="font-weight:800;color:var(--pine);font-size:18px;margin-bottom:11px;">$95,000</div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:7px;">كل التفاصيل</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px;">
+            <div class="card" style="text-align:center;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-bed"/></svg>3 غرف</div>
+            <div class="card" style="text-align:center;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-bath"/></svg>2 حمام</div>
+            <div class="card" style="text-align:center;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-ruler"/></svg>180م²</div>
+            <div class="card" style="text-align:center;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-home"/></svg>طابق 3</div>
+            <div class="card" style="text-align:center;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-cal"/></svg>بناء 2019</div>
+            <div class="card" style="text-align:center;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-shield"/></svg>طابو أخضر</div>
+          </div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:7px;">حالة العقار والوصف</div>
+          <div style="display:flex;gap:6px;margin-bottom:9px;">
+            <span style="background:#E4D6AC;color:#7A5E22;font-size:9px;font-weight:700;padding:5px 11px;border-radius:100px;">سليم بالكامل</span>
+            <span style="background:#EFE9D8;color:var(--ink-soft);font-size:9px;font-weight:700;padding:5px 11px;border-radius:100px;">مفروشة جزئيًا</span>
+          </div>
+          <p style="font-size:9.5px;color:var(--ink-soft);line-height:1.8;margin:0 0 12px;">شقة بإطلالة بحرية مباشرة، في الطابق الثالث مع مصعد، وتشطيبات فاخرة، وقريبة من الخدمات والمدارس.</p>
+
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:7px;">الموقع على الخريطة</div>
+          <div class="card" style="height:76px;position:relative;overflow:hidden;margin-bottom:12px;background:#E9E4D3;">
+            <svg width="100%" height="100%" viewBox="0 0 300 76" style="position:absolute;inset:0;">
+              <rect width="300" height="76" fill="#EFEADA"/>
+              <line x1="0" y1="18" x2="300" y2="18" stroke="#D8D0B8" stroke-width="2"/>
+              <line x1="0" y1="46" x2="300" y2="52" stroke="#D8D0B8" stroke-width="2"/>
+              <line x1="60" y1="0" x2="50" y2="76" stroke="#D8D0B8" stroke-width="2"/>
+              <line x1="190" y1="0" x2="200" y2="76" stroke="#D8D0B8" stroke-width="2"/>
+              <line x1="140" y1="0" x2="140" y2="76" stroke="#D8D0B8" stroke-width="1.4"/>
+            </svg>
+            <svg width="22" height="22" style="position:absolute;top:24px;left:145px;color:var(--pine);filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3));"><use href="#i-pin"/></svg>
+            <span style="position:absolute;bottom:6px;right:8px;background:rgba(255,255,255,0.9);font-size:8px;color:var(--ink-soft);padding:2px 7px;border-radius:100px;">الشاطئ الأزرق، اللاذقية</span>
+          </div>
+
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:7px;">المعلن</div>
+          <div class="card" style="display:flex;align-items:center;gap:8px;padding:9px 10px;margin-bottom:10px;">
+            <div class="photo" style="width:34px;height:34px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:10.5px;">أحمد الحسيني</div>
+              <div style="color:#9AA79E;font-size:8.5px;display:flex;align-items:center;gap:3px;"><svg width="9" height="9" style="color:var(--gold)"><use href="#i-shield"/></svg>هوية موثّقة</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:10px;">
+            <div class="outline-btn" style="flex:1;"><svg width="14" height="14"><use href="#i-chat"/></svg>مراسلة بالتطبيق</div>
+            <div class="gold-btn" style="flex:1;background:#2BAA5E;color:#fff;"><svg width="14" height="14"><use href="#i-phone"/></svg>واتساب</div>
+          </div>
+          <div style="text-align:center;color:#B0876B;font-size:9px;font-weight:700;text-decoration:underline;text-underline-offset:3px;">🚩 الإبلاغ عن هذا الإعلان</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 SEARCH -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">٠٣ / البحث والفلاتر</div>
+    <h2>بحث وفلاتر دقيقة</h2>
+    <p class="desc">فلاتر تناسب واقع السوق السوري: النوع، المدينة، نطاق السعر، وحالة العقار — لإيجاد الخيار المناسب بسرعة.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> فلترة حسب المحافظة والحي</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> بيع أو إيجار أو أرض</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> عرض على شكل قائمة أو خريطة</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:660px;"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body">
+          <div class="card" style="padding:10px 13px;display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+            <span style="color:#A9B3AC;font-size:11px;">حلب، دمشق...</span>
+            <svg width="16" height="16" style="color:var(--pine)"><use href="#i-sliders"/></svg>
+          </div>
+          <div style="display:flex;gap:6px;margin-bottom:11px;">
+            <div class="gold-btn" style="flex:1;font-size:10px;padding:7px;">☰ قائمة</div>
+            <div style="flex:1;font-size:10px;padding:7px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">🗺 خريطة</div>
+          </div>
+          <div style="display:flex;gap:6px;margin-bottom:13px;">
+            <div class="gold-btn" style="flex:1;font-size:10px;padding:7px;">الكل</div>
+            <div style="flex:1;font-size:10px;padding:7px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">بيع</div>
+            <div style="flex:1;font-size:10px;padding:7px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">إيجار</div>
+            <div style="flex:1;font-size:10px;padding:7px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">أرض</div>
+          </div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:6px;">نطاق السعر (USD)</div>
+          <div style="height:4px;background:#EFE9D8;border-radius:10px;position:relative;margin-bottom:5px;">
+            <div style="position:absolute;right:15%;left:35%;height:4px;background:var(--pine);border-radius:10px;"></div>
+            <div style="position:absolute;right:15%;top:-6px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.25);"></div>
+            <div style="position:absolute;left:35%;top:-6px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.25);"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:#9AA79E;margin-bottom:15px;"><span>$5,000</span><span>$200,000+</span></div>
+          <div style="font-size:10.5px;color:#9AA79E;margin-bottom:10px;">٤٧ عقار متوفر · الأحدث أولًا</div>
+          <div class="card" style="display:flex;gap:9px;padding:8px;margin-bottom:8px;">
+            <div class="photo" style="width:56px;height:56px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=200&h=200&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:11px;">بيت عربي تراثي</div>
+              <div style="color:#9AA79E;font-size:9px;display:flex;align-items:center;gap:2px;"><svg width="8" height="8"><use href="#i-pin"/></svg>حلب القديمة</div>
+              <div style="color:var(--pine);font-weight:800;font-size:11px;margin-top:2px;">$68,000</div>
+            </div>
+          </div>
+          <div class="card" style="display:flex;gap:9px;padding:8px;">
+            <div class="photo" style="width:56px;height:56px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=200&h=200&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:11px;">قطعة أرض زراعية</div>
+              <div style="color:#9AA79E;font-size:9px;display:flex;align-items:center;gap:2px;"><svg width="8" height="8"><use href="#i-pin"/></svg>حماة الريف</div>
+              <div style="color:var(--pine);font-weight:800;font-size:11px;margin-top:2px;">$21,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03B MAP VIEW -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٣ / عرض الخريطة</div>
+    <h2>شوف كل الأسعار على الخريطة</h2>
+    <p class="desc">بدل ما يتصفح قائمة طويلة، الزبون يشوف كل العقارات كأسعار مباشرة فوق الخريطة، ويقدر يحدد المنطقة يلي يهمّه بعينه.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> كل سعر يظهر كفقاعة فوق موقعه الفعلي</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> فقاعة ذهبية = عقار موثّق</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> ضغطة على أي فقاعة تفتح تفاصيل العقار مباشرة</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div style="height:100%;position:relative;background:#EFEADA;">
+          <svg width="100%" height="100%" viewBox="0 0 300 610" style="position:absolute;inset:0;">
+            <rect width="300" height="610" fill="#EFEADA"/>
+            <line x1="0" y1="90" x2="300" y2="100" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="0" y1="260" x2="300" y2="250" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="0" y1="420" x2="300" y2="440" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="70" y1="0" x2="60" y2="610" stroke="#DCD4BC" stroke-width="2"/>
+            <line x1="180" y1="0" x2="195" y2="610" stroke="#DCD4BC" stroke-width="1.6"/>
+            <line x1="230" y1="0" x2="245" y2="610" stroke="#DCD4BC" stroke-width="2"/>
+          </svg>
+          <div style="position:absolute;top:18px;right:16px;left:16px;z-index:5;">
+            <div class="card" style="padding:10px 13px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="color:#A9B3AC;font-size:11px;">اللاذقية...</span>
+              <svg width="16" height="16" style="color:var(--pine)"><use href="#i-sliders"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute;top:90px;right:40px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 100px 100px 2px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">$68K</div>
+          <div style="position:absolute;top:150px;right:130px;background:var(--gold);color:var(--pine);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 100px 100px 2px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">✓ $95K</div>
+          <div style="position:absolute;top:130px;left:50px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 2px 100px 100px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">$42K</div>
+          <div style="position:absolute;top:230px;right:70px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 100px 100px 2px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">$21K</div>
+          <div style="position:absolute;top:270px;left:90px;background:var(--gold);color:var(--pine);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 2px 100px 100px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">✓ $185K</div>
+          <div style="position:absolute;top:320px;right:120px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 100px 100px 2px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">$34K</div>
+          <div style="position:absolute;top:360px;left:60px;background:var(--pine);color:var(--gold-soft);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 2px 100px 100px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">$58K</div>
+          <div style="position:absolute;top:400px;right:60px;background:var(--gold);color:var(--pine);font-size:10px;font-weight:800;padding:5px 11px;border-radius:100px 100px 100px 2px;box-shadow:0 4px 10px rgba(0,0,0,0.2);">✓ $76K</div>
+
+          <div style="position:absolute;top:280px;left:150px;width:14px;height:14px;border-radius:50%;background:#3B82F6;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>
+
+          <div style="position:absolute;bottom:70px;right:16px;left:16px;">
+            <div class="card" style="display:flex;gap:9px;padding:8px;">
+              <div class="photo" style="width:48px;height:48px;border-radius:10px;flex:none;background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=150&h=150&fit=crop');"></div>
+              <div style="flex:1;">
+                <div style="font-weight:700;font-size:10.5px;">شقة مطلة على البحر</div>
+                <div style="color:#9AA79E;font-size:8.5px;">اللاذقية</div>
+                <div style="color:var(--pine);font-weight:800;font-size:11px;">$95,000</div>
+              </div>
+            </div>
+          </div>
+          <div style="position:absolute;bottom:16px;right:16px;left:16px;text-align:center;">
+            <span style="background:rgba(255,255,255,0.95);font-size:9.5px;color:var(--ink-soft);padding:6px 14px;border-radius:100px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">٤٧ عقار بهاي المنطقة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 POST LISTING -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٤ / إضافة عقار</div>
+    <h2>انشر عقارك بخطوات بسيطة</h2>
+    <p class="desc">نموذج مختصر خطوة بخطوة: نوع العقار، الصور، السعر، الموقع، ووصف يكتبه صاحب الإعلان بنفسه — يذكر فيه القريب من العقار حسب نوعه (مدرسة، جامع، سوق، أرض زراعية...).</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> اختيار: بيع، إيجار، أو أرض</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> وصف إلزامي يكتبه المعلن نفسه</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> مراجعة قبل النشر لمنع الإعلانات الوهمية</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:1100px;"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body">
+          <div style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);margin-bottom:2px;">إضافة عقار جديد</div>
+          <div style="color:#9AA79E;font-size:9.5px;margin-bottom:13px;">الخطوة ٢ من ٤ — الصور والمستندات</div>
+          <div style="display:flex;gap:4px;margin-bottom:17px;">
+            <div style="flex:1;height:4px;background:var(--pine);border-radius:4px;"></div>
+            <div style="flex:1;height:4px;background:var(--pine);border-radius:4px;"></div>
+            <div style="flex:1;height:4px;background:#EFE9D8;border-radius:4px;"></div>
+            <div style="flex:1;height:4px;background:#EFE9D8;border-radius:4px;"></div>
+          </div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:7px;">نوع العرض</div>
+          <div style="display:flex;gap:6px;margin-bottom:14px;">
+            <div class="gold-btn" style="flex:1;font-size:10px;padding:8px;">بيع</div>
+            <div style="flex:1;font-size:10px;padding:8px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">إيجار</div>
+            <div style="flex:1;font-size:10px;padding:8px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">أرض</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
+            <span style="font-size:10.5px;font-weight:700;color:var(--pine);">صور البيت (٦ مضافة)</span>
+            <span style="font-size:9px;color:#9AA79E;">بدون حد أقصى</span>
+          </div>
+          <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;">
+            <div style="width:50px;height:50px;border-radius:11px;background:var(--ivory-2);display:flex;align-items:center;justify-content:center;border:1.5px dashed #C7BFA6;"><svg width="17" height="17" style="color:var(--pine)"><use href="#i-plus"/></svg></div>
+            <div class="photo" style="width:50px;height:50px;border-radius:11px;background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop');"></div>
+            <div class="photo" style="width:50px;height:50px;border-radius:11px;background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&h=200&fit=crop');"></div>
+            <div class="photo" style="width:50px;height:50px;border-radius:11px;background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=200&h=200&fit=crop');"></div>
+            <div class="photo" style="width:50px;height:50px;border-radius:11px;background-image:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=200&h=200&fit=crop');"></div>
+            <div class="photo" style="width:50px;height:50px;border-radius:11px;background-image:url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=200&h=200&fit=crop');"></div>
+          </div>
+          <p style="font-size:9px;color:#9AA79E;margin:-8px 0 10px;">صوّر كل غرفة، والمطبخ، والحمامات، والواجهة الخارجية — فكلما زادت الصور، زادت ثقة المشتري.</p>
+          <div class="card" style="padding:9px 11px;margin-bottom:10px;background:#F7F1E2;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;"><svg width="13" height="13" style="color:#8C6D2A"><use href="#i-shield"/></svg><span style="font-size:9.5px;font-weight:700;color:#8C6D2A;">حقول إلزامية لمنع الإعلانات الوهمية</span></div>
+            <div style="font-size:8.5px;color:var(--ink-soft);line-height:1.9;">الموقع الدقيق على الخريطة، المساحة، وعدد الغرف أو نوع الأرض، والسعر، ووصف العقار — لا يمكن نشر الإعلان قبل استيفائها بالكامل.</div>
+          </div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:6px;">رقم التواصل الظاهر للزبائن *</div>
+          <div class="card" style="padding:11px 13px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="color:var(--ink);font-size:11px;font-weight:700;">963+ 9XX XXX XXX</span>
+            <svg width="16" height="16" style="color:#2BAA5E"><use href="#i-shield"/></svg>
+          </div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:6px;">أكّد الموقع على الخريطة *</div>
+          <div class="card" style="height:64px;position:relative;overflow:hidden;margin-bottom:12px;background:#E9E4D3;">
+            <svg width="100%" height="100%" viewBox="0 0 300 64" style="position:absolute;inset:0;">
+              <rect width="300" height="64" fill="#EFEADA"/>
+              <line x1="0" y1="16" x2="300" y2="16" stroke="#D8D0B8" stroke-width="2"/>
+              <line x1="0" y1="42" x2="300" y2="46" stroke="#D8D0B8" stroke-width="2"/>
+              <line x1="80" y1="0" x2="70" y2="64" stroke="#D8D0B8" stroke-width="2"/>
+              <line x1="200" y1="0" x2="210" y2="64" stroke="#D8D0B8" stroke-width="2"/>
+            </svg>
+            <svg width="20" height="20" style="position:absolute;top:20px;left:145px;color:var(--pine);filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3));"><use href="#i-pin"/></svg>
+            <span style="position:absolute;bottom:5px;right:8px;background:rgba(255,255,255,0.9);font-size:8px;color:var(--ink-soft);padding:2px 6px;border-radius:100px;">اسحب الدبوس لتثبيت الموقع بدقة</span>
+          </div>
+          <div class="card" style="padding:11px 13px;display:flex;align-items:center;gap:9px;margin-bottom:12px;">
+            <svg width="18" height="18" style="color:var(--pine)"><use href="#i-doc"/></svg>
+            <span style="color:var(--ink-soft);font-size:10.5px;">إرفاق سند الملكية (اختياري)</span>
+          </div>
+
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:6px;">وصف العقار *</div>
+          <div class="card" style="padding:11px 13px;margin-bottom:6px;">
+            <div style="font-size:10px;color:#C7BFA6;line-height:1.9;">اكتب وصفًا واضحًا للعقار: حالته، وأقرب المرافق إليه — مثل مدرسة، جامع، سوق، طريق رئيسي، أو أرض زراعية مجاورة إن وُجدت...</div>
+          </div>
+          <div style="font-size:8.5px;color:#9AA79E;margin-bottom:12px;">هاي المعلومات هي اللي بتظهر لكل الزوار بصفحة الإعلان — اكتبها أنت بنفسك بدقة.</div>
+
+          <div style="display:flex;align-items:center;gap:6px;background:#EAF6EE;border-radius:11px;padding:8px 11px;margin-bottom:12px;">
+            <svg width="14" height="14" style="color:#2BAA5E"><use href="#i-shield"/></svg>
+            <span style="font-size:9px;color:#1F7A44;font-weight:700;">كل الحقول الإلزامية مكتملة — جاهز للنشر بعد المراجعة</span>
+          </div>
+          <div class="gold-btn">التالي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 SAVED -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">٠٥ / المفضلة</div>
+    <h2>عقاراتك المحفوظة</h2>
+    <p class="desc">قائمة تُبقي كل ما أعجب المستخدم في مكان واحد، لمقارنة الخيارات بسهولة قبل اتخاذ القرار.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تصفية بين بيع وإيجار</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تنبيه عند تغيّر سعر عقار محفوظ</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> مشاركة القائمة مع العائلة</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body">
+          <div style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);margin-bottom:11px;">المفضلة</div>
+          <div style="display:flex;gap:6px;margin-bottom:13px;">
+            <div class="gold-btn" style="flex:1;font-size:10px;padding:7px;">الكل</div>
+            <div style="flex:1;font-size:10px;padding:7px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">للبيع</div>
+            <div style="flex:1;font-size:10px;padding:7px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">للإيجار</div>
+          </div>
+          <div class="card" style="display:flex;gap:9px;padding:8px;margin-bottom:8px;align-items:center;">
+            <div class="photo" style="width:54px;height:54px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:11px;">فيلا حديثة</div>
+              <div style="color:#9AA79E;font-size:9px;">المالكي، دمشق</div>
+              <div style="color:var(--pine);font-weight:800;font-size:11px;">$185,000</div>
+            </div>
+            <svg width="16" height="16" style="color:var(--gold)"><use href="#i-heart-fill"/></svg>
+          </div>
+          <div class="card" style="display:flex;gap:9px;padding:8px;margin-bottom:8px;align-items:center;">
+            <div class="photo" style="width:54px;height:54px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=200&h=200&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:11px;">أرض للبيع</div>
+              <div style="color:#9AA79E;font-size:9px;">جبلة، اللاذقية</div>
+              <div style="color:var(--pine);font-weight:800;font-size:11px;">$42,000</div>
+            </div>
+            <svg width="16" height="16" style="color:var(--gold)"><use href="#i-heart-fill"/></svg>
+          </div>
+          <div class="card" style="display:flex;gap:9px;padding:8px;align-items:center;">
+            <div class="photo" style="width:54px;height:54px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=200&h=200&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:11px;">شقة للإيجار</div>
+              <div style="color:#9AA79E;font-size:9px;">شارع بغداد، حلب</div>
+              <div style="color:var(--pine);font-weight:800;font-size:11px;">$220 / شهر</div>
+            </div>
+            <svg width="16" height="16" style="color:var(--gold)"><use href="#i-heart-fill"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05B LAND DETAILS -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٦ / تفاصيل حسب الفئة</div>
+    <h2>كل فئة إلها تفاصيلها الخاصة</h2>
+    <p class="desc">تفاصيل البيت مش هي نفسها تفاصيل الأرض. الأرض تعرض المساحة ونوعها والواجهة وسند الملكية، والإيجار يعرض مدة العقد — كل فئة (بيت، شقة، أرض، إيجار) عندها حقول تفاصيل كاملة خاصة فيها.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> أرض: المساحة، نوع الأرض، الواجهة، الطريق</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> إيجار: مدة العقد، مفروشة أو لا، الدفعة المقدمة</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> بيت/شقة: الغرف، الطابق، سنة البناء، نوع السند</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:920px;"><div class="island"></div>
+      <div class="screen">
+        <div class="photo" style="height:170px;background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&h=400&fit=crop');flex:none;">
+          <div class="fade-b"></div>
+          <div style="position:absolute;top:18px;right:18px;left:18px;display:flex;justify-content:space-between;z-index:5;">
+            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" style="color:var(--pine)"><use href="#i-back"/></svg></div>
+            <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;"><svg width="15" height="15" style="color:var(--pine)"><use href="#i-heart"/></svg></div>
+          </div>
+          <span class="tag-verified" style="position:absolute;bottom:12px;right:14px;">✓ سند موثّق</span>
+          <span style="position:absolute;bottom:12px;left:14px;color:#fff;font-size:9.5px;background:rgba(0,0,0,0.35);padding:3px 8px;border-radius:100px;">١ / ٧</span>
+        </div>
+        <div class="screen-body" style="padding-top:12px;">
+          <div style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);">قطعة أرض سكنية</div>
+          <div style="color:#9AA79E;font-size:10px;margin:3px 0 9px;display:flex;align-items:center;gap:3px;"><svg width="10" height="10"><use href="#i-pin"/></svg>جبلة، ريف اللاذقية</div>
+          <div style="font-weight:800;color:var(--pine);font-size:18px;margin-bottom:11px;">$42,000</div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:7px;">تفاصيل الأرض</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;">
+            <div class="card" style="padding:8px 10px;display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-ruler"/></svg>المساحة: 600م²</div>
+            <div class="card" style="padding:8px 10px;display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-home"/></svg>سكنية</div>
+            <div class="card" style="padding:8px 10px;display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-ruler"/></svg>الواجهة: 20م</div>
+            <div class="card" style="padding:8px 10px;display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-pin"/></svg>مطلة على طريق عام</div>
+            <div class="card" style="padding:8px 10px;display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-shield"/></svg>سند: طابو أخضر</div>
+            <div class="card" style="padding:8px 10px;display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--ink-soft);"><svg width="13" height="13" style="color:var(--pine)"><use href="#i-doc"/></svg>رخصة بناء متاحة</div>
+          </div>
+          <p style="font-size:9.5px;color:var(--ink-soft);line-height:1.8;margin:0 0 12px;">أرض مستوية، تصلها خدمات الكهرباء والمياه، وتبعد خمس دقائق عن مركز مدينة جبلة، مناسبة للبناء السكني.</p>
+
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:7px;">المعلن</div>
+          <div class="card" style="display:flex;align-items:center;gap:8px;padding:9px 10px;margin-bottom:10px;">
+            <div class="photo" style="width:34px;height:34px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:10.5px;">خالد النجار</div>
+              <div style="color:#9AA79E;font-size:8.5px;display:flex;align-items:center;gap:3px;"><svg width="9" height="9" style="color:var(--gold)"><use href="#i-shield"/></svg>هوية موثّقة</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:10px;">
+            <div class="outline-btn" style="flex:1;"><svg width="14" height="14"><use href="#i-chat"/></svg>مراسلة بالتطبيق</div>
+            <div class="gold-btn" style="flex:1;background:#2BAA5E;color:#fff;"><svg width="14" height="14"><use href="#i-phone"/></svg>واتساب</div>
+          </div>
+          <div style="text-align:center;color:#B0876B;font-size:9px;font-weight:700;text-decoration:underline;text-underline-offset:3px;">🚩 الإبلاغ عن هذا الإعلان</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 PROFILE -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٧ / الملف الشخصي والتواصل</div>
+    <h2>تواصل مباشر وموثوق</h2>
+    <p class="desc">ملف بسيط للمالك أو الوسيط، مع تقييمات المستخدمين، وطريقة سريعة وآمنة للتواصل دون كشف رقم الهاتف مباشرة.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تقييم وسجل عدد الصفقات</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> مراسلة داخل التطبيق</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> الإبلاغ عن إعلان مخالف بضغطة واحدة</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <div class="photo" style="width:48px;height:48px;border-radius:50%;background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=200&h=200&fit=crop');border:2px solid var(--gold-soft);"></div>
+            <div>
+              <div style="font-weight:800;font-size:13px;">أحمد الحسيني</div>
+              <div style="color:#9AA79E;font-size:9px;">وسيط عقاري · دمشق</div>
+              <div style="color:var(--gold);font-size:10px;display:flex;align-items:center;gap:2px;">
+                <svg width="9" height="9"><use href="#i-star"/></svg><svg width="9" height="9"><use href="#i-star"/></svg><svg width="9" height="9"><use href="#i-star"/></svg><svg width="9" height="9"><use href="#i-star"/></svg><svg width="9" height="9"><use href="#i-star"/></svg>
+                <span style="color:var(--ink-soft);margin-right:3px;">4.9 (63)</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;margin-bottom:15px;">
+            <div class="card" style="flex:1;text-align:center;padding:9px 0;">
+              <div style="font-weight:800;font-size:13px;color:var(--pine);">41</div>
+              <div style="font-size:8.5px;color:#9AA79E;">عقار مباع</div>
+            </div>
+            <div class="card" style="flex:1;text-align:center;padding:9px 0;">
+              <svg width="15" height="15" style="color:var(--pine)"><use href="#i-shield"/></svg>
+              <div style="font-size:8.5px;color:#9AA79E;margin-top:2px;">هوية موثقة</div>
+            </div>
+            <div class="card" style="flex:1;text-align:center;padding:9px 0;">
+              <div style="font-weight:800;font-size:13px;color:var(--pine);">10 د</div>
+              <div style="font-size:8.5px;color:#9AA79E;">وقت الرد</div>
+            </div>
+          </div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--pine);margin-bottom:8px;">حجز موعد معاينة</div>
+          <div style="display:flex;gap:5px;margin-bottom:15px;">
+            <div class="gold-btn" style="flex:1;font-size:10px;padding:8px 2px;">الخميس</div>
+            <div style="flex:1;font-size:10px;padding:8px 2px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">الجمعة</div>
+            <div style="flex:1;font-size:10px;padding:8px 2px;text-align:center;border-radius:13px;color:var(--ink-soft);background:var(--ivory-2);font-weight:700;">السبت</div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div class="outline-btn" style="flex:1;"><svg width="14" height="14"><use href="#i-chat"/></svg>رسالة</div>
+            <div class="gold-btn" style="flex:1;"><svg width="14" height="14"><use href="#i-cal"/></svg>حجز معاينة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 CHATS LIST -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">٠٨ / المحادثات</div>
+    <h2>مين راسلك عن عقارك</h2>
+    <p class="desc">كل شخص استفسر عن سعر أو تفاصيل بيت أو أرض بيظهر هون، مع صورة العقار اللي حكى عنه، عشان توصل بسرعة لمين مهتم فعلًا.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> كل محادثة مربوطة بالعقار اللي تخصه</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> نقطة تنبيه للرسائل الجديدة الي ما قريتها</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> اسم وصورة كل شخص واضحين</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body">
+          <div style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);margin-bottom:14px;">المحادثات</div>
+
+          <div style="display:flex;gap:9px;padding:9px 4px;margin-bottom:2px;border-bottom:1px solid #F1EDE1;">
+            <div class="photo" style="width:44px;height:44px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop');"></div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-weight:800;font-size:11.5px;">أنس البكار</span>
+                <span style="font-size:8.5px;color:#9AA79E;">قبل 5 د</span>
+              </div>
+              <div style="font-size:9.5px;color:#9AA79E;margin:2px 0 3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">بخصوص: فيلا حديثة — المالكي، دمشق</div>
+              <div style="font-size:10px;color:var(--ink);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">هل السعر قابل للتفاوض؟</div>
+            </div>
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none;margin-top:4px;"></div>
+          </div>
+
+          <div style="display:flex;gap:9px;padding:9px 4px;margin-bottom:2px;border-bottom:1px solid #F1EDE1;">
+            <div class="photo" style="width:44px;height:44px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1601412436009-d964bd02edbc?w=150&h=150&fit=crop');"></div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-weight:800;font-size:11.5px;">رنا حمدان</span>
+                <span style="font-size:8.5px;color:#9AA79E;">قبل ساعة</span>
+              </div>
+              <div style="font-size:9.5px;color:#9AA79E;margin:2px 0 3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">بخصوص: قطعة أرض سكنية — جبلة</div>
+              <div style="font-size:10px;color:#9AA79E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">تمام، شكرًا على المعلومات 🌿</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:9px;padding:9px 4px;margin-bottom:2px;border-bottom:1px solid #F1EDE1;">
+            <div class="photo" style="width:44px;height:44px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=150&h=150&fit=crop');"></div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-weight:800;font-size:11.5px;">وائل عبدو</span>
+                <span style="font-size:8.5px;color:#9AA79E;">أمس</span>
+              </div>
+              <div style="font-size:9.5px;color:#9AA79E;margin:2px 0 3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">بخصوص: شقة مطلة على البحر — اللاذقية</div>
+              <div style="font-size:10px;color:#9AA79E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">ممكن أعرف تفاصيل الطابق أكتر؟</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:9px;padding:9px 4px;">
+            <div class="photo" style="width:44px;height:44px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop');"></div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-weight:800;font-size:11.5px;">خالد النجار</span>
+                <span style="font-size:8.5px;color:#9AA79E;">قبل يومين</span>
+              </div>
+              <div style="font-size:9.5px;color:#9AA79E;margin:2px 0 3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">بخصوص: بيت عربي تراثي — حلب القديمة</div>
+              <div style="font-size:10px;color:#9AA79E;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">تم، بنتواصل بخصوص الموعد</div>
+            </div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="tab"><svg><use href="#i-home"/></svg><span>الرئيسية</span></div>
+          <div class="tab"><svg><use href="#i-search"/></svg><span>بحث</span></div>
+          <div class="tab"><svg><use href="#i-plus"/></svg><span>إضافة</span></div>
+          <div class="tab active"><svg><use href="#i-chat"/></svg><span>المحادثات</span></div>
+          <div class="tab"><svg><use href="#i-user"/></svg><span>حسابي</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 CHAT DETAIL -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">٠٩ / المحادثة</div>
+    <h2>نقاش مباشر حول العقار</h2>
+    <p class="desc">بطاقة العقار ثابتة فوق المحادثة، عشان الطرفين يعرفوا دايمًا عن أي إعلان يحكوا — وخيار الانتقال لواتساب موجود بأي وقت.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> بطاقة العقار مثبّتة فوق المحادثة</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> اسم وصورة الطرف التاني واضحين دايمًا</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> إمكانية الإبلاغ عن مضايقة مباشرة من المحادثة</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:700px;"><div class="island"></div>
+      <div class="screen">
+        <div style="display:flex;align-items:center;gap:9px;padding:16px 14px 10px;border-bottom:1px solid #F1EDE1;">
+          <svg width="16" height="16" style="color:var(--pine)"><use href="#i-back"/></svg>
+          <div class="photo" style="width:34px;height:34px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop');"></div>
+          <div style="flex:1;">
+            <div style="font-weight:800;font-size:11.5px;">أنس البكار</div>
+            <div style="font-size:8.5px;color:#2BAA5E;">متصل الآن</div>
+          </div>
+          <svg width="16" height="16" style="color:var(--pine)"><use href="#i-phone"/></svg>
+        </div>
+        <div class="card" style="display:flex;gap:8px;padding:8px;margin:10px 14px;">
+          <div class="photo" style="width:40px;height:40px;border-radius:9px;flex:none;background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&h=150&fit=crop');"></div>
+          <div style="flex:1;">
+            <div style="font-weight:700;font-size:10px;">فيلا حديثة</div>
+            <div style="color:#9AA79E;font-size:8.5px;">المالكي، دمشق</div>
+          </div>
+          <div style="color:var(--pine);font-weight:800;font-size:10.5px;align-self:center;">$185,000</div>
+        </div>
+        <div class="screen-body" style="padding-top:6px;">
+          <div style="display:flex;justify-content:center;margin-bottom:12px;"><span style="font-size:8px;color:#B0A98F;background:var(--ivory-2);padding:3px 10px;border-radius:100px;">اليوم</span></div>
+          <div style="display:flex;justify-content:flex-start;margin-bottom:8px;">
+            <div style="background:var(--ivory-2);border-radius:14px 14px 14px 4px;padding:9px 12px;max-width:78%;font-size:10.5px;color:var(--ink);">مرحبا، شفت إعلان الفيلا وعجبتني كتير</div>
+          </div>
+          <div style="display:flex;justify-content:flex-start;margin-bottom:14px;">
+            <div style="background:var(--ivory-2);border-radius:14px 14px 14px 4px;padding:9px 12px;max-width:78%;font-size:10.5px;color:var(--ink);">هل السعر قابل للتفاوض؟</div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-bottom:8px;">
+            <div style="background:var(--pine);color:var(--gold-soft);border-radius:14px 14px 4px 14px;padding:9px 12px;max-width:78%;font-size:10.5px;">أهلًا فيك، يسعدني تواصلك 🙏</div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;">
+            <div style="background:var(--pine);color:var(--gold-soft);border-radius:14px 14px 4px 14px;padding:9px 12px;max-width:78%;font-size:10.5px;">في هامش بسيط للتفاوض، تقدر تعاين البيت أول وبعدها نحكي بالتفاصيل</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 14px 18px;border-top:1px solid #F1EDE1;">
+          <div style="flex:1;background:var(--ivory-2);border-radius:20px;padding:9px 14px;font-size:10px;color:#A9B3AC;">اكتب رسالتك...</div>
+          <div style="width:34px;height:34px;border-radius:50%;background:var(--pine);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="15" height="15" style="color:var(--gold-soft);transform:scaleX(-1)"><use href="#i-back"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 ACCOUNT -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">١٠ / حسابي</div>
+    <h2>الملف الشخصي والإعدادات</h2>
+    <p class="desc">كل شي يخص حساب المستخدم بمكان وحد: بياناته، عقاراته المنشورة، اللغة، والدعم الفني — واضح وبسيط.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تبديل اللغة: عربي / English</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> الشروط والأحكام وسياسة الخصوصية</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> الدعم الفني وتواصل معنا</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:820px;"><div class="island"></div>
+      <div class="screen">
+        <div class="statusbar"><span>9:41</span><span class="icons"><svg width="17" height="10" style="color:var(--ink)"><use href="#i-signal"/></svg><svg width="15" height="11" style="color:var(--ink)"><use href="#i-wifi"/></svg><svg width="24" height="11" style="color:var(--ink)"><use href="#i-battery"/></svg></span></div>
+        <div class="screen-body">
+          <div style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);margin-bottom:14px;">حسابي</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div class="photo" style="width:52px;height:52px;border-radius:50%;flex:none;background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop');border:2px solid var(--gold-soft);"></div>
+            <div>
+              <div style="font-weight:800;font-size:13px;">سامر يوسف</div>
+              <div style="color:#9AA79E;font-size:9px;">963+ 9XX XXX XXX</div>
+              <div style="color:var(--gold);font-size:9px;display:flex;align-items:center;gap:3px;margin-top:2px;"><svg width="10" height="10"><use href="#i-shield"/></svg>حساب موثّق</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;margin-bottom:16px;">
+            <div class="card" style="flex:1;text-align:center;padding:9px 0;">
+              <div style="font-weight:800;font-size:13px;color:var(--pine);">3</div>
+              <div style="font-size:8.5px;color:#9AA79E;">عقاراتي</div>
+            </div>
+            <div class="card" style="flex:1;text-align:center;padding:9px 0;">
+              <div style="font-weight:800;font-size:13px;color:var(--pine);">7</div>
+              <div style="font-size:8.5px;color:#9AA79E;">المفضلة</div>
+            </div>
+            <div class="card" style="flex:1;text-align:center;padding:9px 0;">
+              <div style="font-weight:800;font-size:13px;color:var(--pine);">12</div>
+              <div style="font-size:8.5px;color:#9AA79E;">الرسائل</div>
+            </div>
+          </div>
+
+          <div style="font-size:9.5px;font-weight:700;color:#9AA79E;margin-bottom:6px;">الحساب</div>
+          <div class="card" style="margin-bottom:14px;overflow:hidden;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid #F1EDE1;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:10.5px;"><svg width="14" height="14" style="color:var(--pine)"><use href="#i-user"/></svg>تعديل الملف الشخصي</span>
+              <span style="color:#C9C3AE;">‹</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid #F1EDE1;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:10.5px;"><svg width="14" height="14" style="color:var(--pine)"><use href="#i-home"/></svg>عقاراتي المنشورة</span>
+              <span style="color:#C9C3AE;">‹</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:10.5px;"><svg width="14" height="14" style="color:var(--pine)"><use href="#i-bell"/></svg>الإشعارات</span>
+              <div style="width:30px;height:17px;border-radius:20px;background:var(--pine);position:relative;"><div style="width:13px;height:13px;border-radius:50%;background:#fff;position:absolute;top:2px;right:2px;"></div></div>
+            </div>
+          </div>
+
+          <div style="font-size:9.5px;font-weight:700;color:#9AA79E;margin-bottom:6px;">التفضيلات</div>
+          <div class="card" style="margin-bottom:14px;overflow:hidden;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid #F1EDE1;">
+              <span style="font-size:10.5px;">اللغة</span>
+              <div style="display:flex;background:var(--ivory-2);border-radius:9px;padding:2px;">
+                <span style="background:var(--pine);color:var(--gold-soft);font-size:9px;font-weight:700;padding:4px 10px;border-radius:7px;">عربي</span>
+                <span style="color:#9AA79E;font-size:9px;font-weight:700;padding:4px 10px;">EN</span>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;">
+              <span style="font-size:10.5px;">العملة المعروضة</span>
+              <span style="color:var(--pine);font-size:9.5px;font-weight:700;">USD $</span>
+            </div>
+          </div>
+
+          <div style="font-size:9.5px;font-weight:700;color:#9AA79E;margin-bottom:6px;">الدعم والمعلومات</div>
+          <div class="card" style="margin-bottom:14px;overflow:hidden;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid #F1EDE1;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:10.5px;"><svg width="14" height="14" style="color:var(--pine)"><use href="#i-chat"/></svg>الدعم الفني</span>
+              <span style="color:#C9C3AE;">‹</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid #F1EDE1;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:10.5px;"><svg width="14" height="14" style="color:var(--pine)"><use href="#i-doc"/></svg>الشروط والأحكام</span>
+              <span style="color:#C9C3AE;">‹</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:10.5px;"><svg width="14" height="14" style="color:var(--pine)"><use href="#i-shield"/></svg>سياسة الخصوصية</span>
+              <span style="color:#C9C3AE;">‹</span>
+            </div>
+          </div>
+          <div style="text-align:center;color:#B0876B;font-size:10px;font-weight:700;">تسجيل الخروج</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11 NOTIFICATIONS -->
+<div class="section">
+  <div class="copy">
+    <div class="step-eyebrow">١١ / الإشعارات</div>
+    <h2>كل شي يخص عقارك بمكان وحد</h2>
+    <p class="desc">رسالة جديدة، تغيّر سعر عقار محفوظ، أو تحديث حالة إعلانك بعد المراجعة — كلها تظهر هون، مش بس أيقونة جرس بدون شاشة.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تنبيه عند قبول أو رفض إعلانك بعد المراجعة</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تنبيه عند تغيّر سعر عقار بالمفضلة</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تنبيه لما يطلع عقار يطابق بحث محفوظ</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:700px;"><div class="island"></div>
+      <div class="screen">
+        <div style="display:flex;align-items:center;gap:9px;padding:18px 16px 12px;border-bottom:1px solid #F1EDE1;">
+          <svg width="16" height="16" style="color:var(--pine)"><use href="#i-back"/></svg>
+          <span style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);">الإشعارات</span>
+        </div>
+        <div class="screen-body" style="padding-top:10px;">
+          <div style="display:flex;gap:10px;padding:10px 4px;border-bottom:1px solid #F1EDE1;">
+            <div style="width:36px;height:36px;border-radius:50%;background:#EAF6EE;display:flex;align-items:center;justify-content:center;flex:none;"><svg width="16" height="16" style="color:#2BAA5E"><use href="#i-shield"/></svg></div>
+            <div style="flex:1;">
+              <div style="font-size:10.5px;font-weight:700;">تم قبول إعلانك ✓</div>
+              <div style="font-size:9px;color:#9AA79E;margin-top:1px;">"شقة مطلة على البحر" صار ظاهر للجميع الآن</div>
+              <div style="font-size:8px;color:#C7BFA6;margin-top:2px;">قبل 10 دقائق</div>
+            </div>
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;margin-top:4px;"></div>
+          </div>
+
+          <div style="display:flex;gap:10px;padding:10px 4px;border-bottom:1px solid #F1EDE1;">
+            <div class="photo" style="width:36px;height:36px;border-radius:9px;flex:none;background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=150&h=150&fit=crop');"></div>
+            <div style="flex:1;">
+              <div style="font-size:10.5px;font-weight:700;">أنس البكار راسلك</div>
+              <div style="font-size:9px;color:#9AA79E;margin-top:1px;">هل السعر قابل للتفاوض؟</div>
+              <div style="font-size:8px;color:#C7BFA6;margin-top:2px;">قبل ساعة</div>
+            </div>
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;margin-top:4px;"></div>
+          </div>
+
+          <div style="display:flex;gap:10px;padding:10px 4px;border-bottom:1px solid #F1EDE1;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--ivory-2);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="16" height="16" style="color:var(--pine)"><use href="#i-heart"/></svg></div>
+            <div style="flex:1;">
+              <div style="font-size:10.5px;font-weight:700;">انخفض سعر عقار بالمفضلة</div>
+              <div style="font-size:9px;color:#9AA79E;margin-top:1px;">"فيلا حديثة" — من $195,000 إلى $185,000</div>
+              <div style="font-size:8px;color:#C7BFA6;margin-top:2px;">أمس</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;padding:10px 4px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--ivory-2);display:flex;align-items:center;justify-content:center;flex:none;"><svg width="16" height="16" style="color:var(--pine)"><use href="#i-search"/></svg></div>
+            <div style="flex:1;">
+              <div style="font-size:10.5px;font-weight:700;">عقار جديد يطابق بحثك المحفوظ</div>
+              <div style="font-size:9px;color:#9AA79E;margin-top:1px;">"شقق للإيجار — اللاذقية تحت $300"</div>
+              <div style="font-size:8px;color:#C7BFA6;margin-top:2px;">قبل يومين</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 12 MY LISTINGS -->
+<div class="section reverse">
+  <div class="copy">
+    <div class="step-eyebrow">١٢ / عقاراتي المنشورة</div>
+    <h2>إدارة كل إعلاناتك بمكان وحد</h2>
+    <p class="desc">تشوف حالة كل إعلان بوضوح — نشط، قيد المراجعة، منتهي، أو مرفوض — وتتحكم فيه: تعديل، تجديد، أو حذف.</p>
+    <ul class="feat-list">
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> شارة حالة واضحة على كل إعلان</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> تعديل أو تجديد أو تعليم "تم البيع/الإيجار"</li>
+      <li><span class="chk"><svg width="11" height="11" style="color:#E4D6AC"><use href="#i-shield"/></svg></span> سبب الرفض يظهر واضح لو ما اجتاز المراجعة</li>
+    </ul>
+  </div>
+  <div class="phonewrap">
+    <svg class="watermark-eagle" viewBox="0 0 200 200" fill="none"><path fill="#0B2B21" d="M100 45 C110 55 130 55 145 45 L190 90 C170 100 150 95 138 85 L120 100 L130 130 L110 175 L100 190 L90 175 L70 130 L80 100 L62 85 C50 95 30 100 10 90 L55 45 C70 55 90 55 100 45 Z"/></svg>
+    <div class="phone" style="height:760px;"><div class="island"></div>
+      <div class="screen">
+        <div style="display:flex;align-items:center;gap:9px;padding:18px 16px 12px;border-bottom:1px solid #F1EDE1;">
+          <svg width="16" height="16" style="color:var(--pine)"><use href="#i-back"/></svg>
+          <span style="font-family:'Cairo';font-weight:800;font-size:15px;color:var(--pine);">عقاراتي المنشورة</span>
+        </div>
+        <div class="screen-body" style="padding-top:12px;">
+
+          <div class="card" style="padding:10px;margin-bottom:10px;">
+            <div style="display:flex;gap:9px;margin-bottom:8px;">
+              <div class="photo" style="width:50px;height:50px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=150&h=150&fit=crop');"></div>
+              <div style="flex:1;">
+                <div style="font-weight:700;font-size:11px;">شقة مطلة على البحر</div>
+                <div style="color:var(--pine);font-weight:800;font-size:11px;margin-top:2px;">$95,000</div>
+                <span style="background:#EAF6EE;color:#1F7A44;font-size:8.5px;font-weight:700;padding:3px 9px;border-radius:100px;">نشط</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <div class="outline-btn" style="flex:1;font-size:9.5px;padding:7px;">تعديل</div>
+              <div class="outline-btn" style="flex:1;font-size:9.5px;padding:7px;">تم البيع</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:10px;margin-bottom:10px;">
+            <div style="display:flex;gap:9px;margin-bottom:8px;">
+              <div class="photo" style="width:50px;height:50px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=150&h=150&fit=crop');"></div>
+              <div style="flex:1;">
+                <div style="font-weight:700;font-size:11px;">قطعة أرض سكنية</div>
+                <div style="color:var(--pine);font-weight:800;font-size:11px;margin-top:2px;">$42,000</div>
+                <span style="background:#F7F1E2;color:#8C6D2A;font-size:8.5px;font-weight:700;padding:3px 9px;border-radius:100px;">قيد المراجعة</span>
+              </div>
+            </div>
+            <div style="font-size:9px;color:#9AA79E;">بنراجع إعلانك للتأكد من اكتمال البيانات — عادة خلال 24 ساعة</div>
+          </div>
+
+          <div class="card" style="padding:10px;margin-bottom:10px;">
+            <div style="display:flex;gap:9px;margin-bottom:8px;">
+              <div class="photo" style="width:50px;height:50px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=150&h=150&fit=crop');"></div>
+              <div style="flex:1;">
+                <div style="font-weight:700;font-size:11px;">بيت عربي تراثي</div>
+                <div style="color:var(--pine);font-weight:800;font-size:11px;margin-top:2px;">$68,000</div>
+                <span style="background:#FBEAEA;color:#B0483F;font-size:8.5px;font-weight:700;padding:3px 9px;border-radius:100px;">مرفوض</span>
+              </div>
+            </div>
+            <div style="font-size:9px;color:#B0483F;margin-bottom:8px;">السبب: صور غير واضحة — يرجى رفع صور أوضح للواجهة الخارجية</div>
+            <div class="gold-btn" style="font-size:9.5px;padding:7px;">تعديل وإعادة الإرسال</div>
+          </div>
+
+          <div class="card" style="padding:10px;opacity:0.7;">
+            <div style="display:flex;gap:9px;margin-bottom:8px;">
+              <div class="photo" style="width:50px;height:50px;border-radius:11px;flex:none;background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=150&h=150&fit=crop');"></div>
+              <div style="flex:1;">
+                <div style="font-weight:700;font-size:11px;">شقة للإيجار — حلب</div>
+                <div style="color:var(--pine);font-weight:800;font-size:11px;margin-top:2px;">$220 / شهر</div>
+                <span style="background:var(--ivory-2);color:var(--ink-soft);font-size:8.5px;font-weight:700;padding:3px 9px;border-radius:100px;">منتهي</span>
+              </div>
+            </div>
+            <div class="outline-btn" style="font-size:9.5px;padding:7px;">تجديد الإعلان</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>ديارنا · Dyarna</strong> — منصة العقارات في سوريا
+</div>
+
+</body>
+</html>
