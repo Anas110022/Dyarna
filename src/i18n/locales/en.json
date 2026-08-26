@@ -2,7 +2,13 @@
   "common": {
     "appName": "Dyarna",
     "comingSoon": "Coming soon",
-    "comingSoonBody": "This section is still in development — it will be ready in a later phase."
+    "comingSoonBody": "This section is still in development — it will be ready in a later phase.",
+    "back": "Back"
+  },
+  "stubs": {
+    "listingDetails": "Listing details",
+    "searchResults": "Search results",
+    "postListing": "Post a listing"
   },
   "tabs": {
     "account": "Account",
@@ -56,6 +62,27 @@
     "errorEmailInvalid": "Please enter a valid email address",
     "errorPasswordTooShort": "Password must be at least 6 characters",
     "errorGeneric": "Something went wrong, please try again"
+  },
+  "home": {
+    "forRent": "For rent",
+    "forSale": "For sale",
+    "filters": "Filters",
+    "categoryAll": "All",
+    "categoryApartment": "Apartment",
+    "categoryVilla": "Villa",
+    "categoryHouse": "House",
+    "categoryLand": "Land",
+    "categoryOffice": "Office",
+    "categoryShop": "Shop",
+    "categoryBuilding": "Building",
+    "list": "☰ List",
+    "add": "＋ Add",
+    "favorites": "Favorites",
+    "resultsCount": "{{shown}} of {{total}} listings",
+    "perMonth": "/month",
+    "viewFullDetails": "View full details",
+    "locationPermissionTitle": "Location permission",
+    "locationPermissionBody": "Enable location permission in device settings to see listings near you"
   },
   "otp": {
     "title": "Enter verification code",
