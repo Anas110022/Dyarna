@@ -8,7 +8,10 @@
     "scheme": "dyarna",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "ديارنا بتستخدم موقعك لعرض العقارات القريبة منك على الخريطة."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -32,6 +35,12 @@
           "image": "./assets/splash-icon.png",
           "resizeMode": "contain",
           "backgroundColor": "#0B2B21"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "ديارنا بتستخدم موقعك لعرض العقارات القريبة منك على الخريطة."
         }
       ]
     ],

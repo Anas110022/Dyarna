@@ -13,7 +13,7 @@ const LOCALE_STORAGE_KEY = 'dyarna.locale';
 type I18nContextValue = {
   locale: Locale;
   isRTL: boolean;
-  t: (key: string) => string;
+  t: (key: string, params?: Record<string, string | number>) => string;
   setLocale: (locale: Locale) => Promise<void>;
 };
 
@@ -24,6 +24,14 @@ function resolve(dict: Record<string, unknown>, key: string): string {
     .split('.')
     .reduce<unknown>((acc, part) => (acc && typeof acc === 'object' ? (acc as Record<string, unknown>)[part] : undefined), dict);
   return typeof value === 'string' ? value : key;
+}
+
+function interpolate(template: string, params?: Record<string, string | number>): string {
+  if (!params) return template;
+  return Object.entries(params).reduce(
+    (acc, [name, value]) => acc.replace(`{{${name}}}`, String(value)),
+    template
+  );
 }
 
 function applyRTL(locale: Locale) {
@@ -56,7 +64,10 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     applyRTL(next);
   }, []);
 
-  const t = useCallback((key: string) => resolve(translations[locale], key), [locale]);
+  const t = useCallback(
+    (key: string, params?: Record<string, string | number>) => interpolate(resolve(translations[locale], key), params),
+    [locale]
+  );
 
   if (!ready) return null;
 
