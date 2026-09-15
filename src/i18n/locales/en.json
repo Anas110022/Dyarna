@@ -67,6 +67,8 @@
     "resend": "Resend code",
     "resent": "Code resent",
     "errorIncomplete": "Please enter the full code",
-    "errorInvalid": "Incorrect code, please try again"
+    "errorInvalid": "Incorrect code, please try again",
+    "errorExpired": "This code has expired, please request a new one",
+    "errorTooManyAttempts": "Too many incorrect attempts, please request a new code"
   }
 }

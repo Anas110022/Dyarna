@@ -30,6 +30,22 @@ export default function OtpScreen() {
 
   const showError = (message: string) => Alert.alert(t('auth.errorTitle'), message);
 
+  // email-otp (supabase/functions/email-otp/index.ts) returns one of a
+  // small set of real, known error codes — always translate those to a
+  // real Arabic/English message, never show the raw code string. Phone
+  // OTP errors come straight from Supabase Auth's own GoTrue service as
+  // arbitrary English sentences, which can't be enumerated/translated
+  // the same way, so they always fall back to the generic message
+  // instead of ever surfacing raw English text to the user.
+  const translateOtpError = (rawError: string): string => {
+    if (method === 'email') {
+      if (rawError === 'otp_expired') return t('otp.errorExpired');
+      if (rawError === 'otp_too_many_attempts') return t('otp.errorTooManyAttempts');
+      if (rawError === 'account_not_found') return t('auth.errorAccountNotFound');
+    }
+    return t('otp.errorInvalid');
+  };
+
   const handleConfirm = async () => {
     if (code.length < OTP_LENGTH) {
       showError(t('otp.errorIncomplete'));
@@ -40,7 +56,7 @@ export default function OtpScreen() {
       method === 'phone' ? await verifyPhoneOtp(value, code) : await verifyEmailSignupOtp(value, code);
     setLoading(false);
     if (error) {
-      showError(error || t('otp.errorInvalid'));
+      showError(translateOtpError(error));
       return;
     }
     router.replace('/(tabs)');
@@ -50,7 +66,7 @@ export default function OtpScreen() {
     if (secondsLeft > 0) return;
     const { error } = method === 'phone' ? await sendPhoneOtp(value) : await resendEmailSignupOtp(value);
     if (error) {
-      showError(error);
+      showError(translateOtpError(error));
       return;
     }
     setCode('');
