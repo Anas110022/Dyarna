@@ -10,27 +10,50 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useI18n } from '@/src/i18n';
 import { isSupabaseConfigured } from '@/src/lib/supabase';
-import { isValidEmail, isValidSyrianLocalNumber, toE164 } from '@/src/lib/phone';
-import { sendPhoneOtp, signInWithEmailPassword, signUpWithEmail, resetPasswordForEmail } from '@/src/lib/authService';
+import { isValidEmail, isValidLocalNumber, toE164 } from '@/src/lib/phone';
+import { DEFAULT_COUNTRY, type CountryCode } from '@/src/lib/countryCodes';
+import { sendPhoneOtp, signUpWithEmail, resendEmailSignupOtp } from '@/src/lib/authService';
 import { colors, fonts, spacing } from '@/src/theme';
 import { EagleLogo } from '@/src/components/EagleLogo';
 import { PillButton } from '@/src/components/PillButton';
+import { PhoneInput } from '@/src/components/PhoneInput';
 
 type AuthMode = 'signup' | 'signin';
 type AuthMethod = 'phone' | 'email';
 
 export default function LoginScreen() {
   const { t, locale, setLocale } = useI18n();
+  const params = useLocalSearchParams<{ mode?: AuthMode; redirect?: string; intent?: string }>();
 
-  const [mode, setMode] = useState<AuthMode>('signup');
+  // Guest Mode return-to-origin: whatever screen/action sent the guest here
+  // rides along as plain route params, untouched by this screen, and gets
+  // forwarded to /otp so the real destination is known only once
+  // verification actually succeeds (see app/(auth)/otp.tsx).
+  const otpParams = { redirect: params.redirect, intent: params.intent };
+
+  // Guest Mode: this screen is no longer only the mandatory startup
+  // destination — a signed-out user can now also reach it voluntarily
+  // (tapping "تسجيل الدخول"/"إنشاء حساب" from a guest-mode prompt), so it
+  // needs a real way back to guest browsing instead of being a dead end.
+  const closeToGuestMode = () => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/(tabs)');
+    }
+  };
+
+  const [mode, setMode] = useState<AuthMode>(params.mode === 'signin' ? 'signin' : 'signup');
   const [method, setMethod] = useState<AuthMethod>('phone');
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -44,11 +67,11 @@ export default function LoginScreen() {
     }
 
     if (method === 'phone') {
-      if (!isValidSyrianLocalNumber(phone)) {
+      if (!isValidLocalNumber(phone, phoneCountry)) {
         showError(t('auth.errorPhoneInvalid'));
         return;
       }
-      const phoneE164 = toE164(phone);
+      const phoneE164 = toE164(phone, phoneCountry);
       setLoading(true);
       const { error } = await sendPhoneOtp(phoneE164, mode === 'signup' ? fullName.trim() : undefined);
       setLoading(false);
@@ -56,53 +79,49 @@ export default function LoginScreen() {
         showError(error);
         return;
       }
-      router.push({ pathname: '/(auth)/otp', params: { method: 'phone', value: phoneE164, mode } });
+      router.push({ pathname: '/(auth)/otp', params: { method: 'phone', value: phoneE164, mode, ...otpParams } });
       return;
     }
 
-    // method === 'email'
+    // method === 'email' — real 6-digit OTP for both signup and sign-in.
+    // Dyarna's email auth never checks a password to log in: signup still
+    // collects one (used later for the "change password" account setting),
+    // but sign-in only ever sends a fresh code to an existing account —
+    // resendEmailSignupOtp hits the same email-otp Edge Function's
+    // 'resend' action, which needs no password and works for any real,
+    // already-registered email.
     if (!isValidEmail(email)) {
       showError(t('auth.errorEmailInvalid'));
-      return;
-    }
-    if (password.length < 6) {
-      showError(t('auth.errorPasswordTooShort'));
       return;
     }
 
     setLoading(true);
     if (mode === 'signup') {
+      if (password.length < 6) {
+        setLoading(false);
+        showError(t('auth.errorPasswordTooShort'));
+        return;
+      }
       const { error } = await signUpWithEmail(email.trim(), password, fullName.trim());
       setLoading(false);
       if (error) {
         showError(error);
         return;
       }
-      router.push({ pathname: '/(auth)/otp', params: { method: 'email', value: email.trim(), mode: 'signup' } });
+      router.push({ pathname: '/(auth)/otp', params: { method: 'email', value: email.trim(), mode: 'signup', ...otpParams } });
     } else {
-      const { error } = await signInWithEmailPassword(email.trim(), password);
+      const { error } = await resendEmailSignupOtp(email.trim());
       setLoading(false);
+      if (error === 'account_not_found') {
+        showError(t('auth.errorAccountNotFound'));
+        return;
+      }
       if (error) {
         showError(error);
         return;
       }
-      router.replace('/(tabs)');
+      router.push({ pathname: '/(auth)/otp', params: { method: 'email', value: email.trim(), mode: 'signin', ...otpParams } });
     }
-  };
-
-  const handleForgotPassword = async () => {
-    if (!isValidEmail(email)) {
-      showError(t('auth.errorEmailInvalid'));
-      return;
-    }
-    setLoading(true);
-    const { error } = await resetPasswordForEmail(email.trim());
-    setLoading(false);
-    if (error) {
-      showError(error);
-      return;
-    }
-    Alert.alert(t('auth.resetPasswordSentTitle'), t('auth.resetPasswordSentBody'));
   };
 
   const ctaLabel =
@@ -116,6 +135,11 @@ export default function LoginScreen() {
 
   return (
     <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <SafeAreaView edges={['top']} style={styles.closeButtonSafeArea} pointerEvents="box-none">
+        <Pressable style={styles.closeButton} onPress={closeToGuestMode} hitSlop={12}>
+          <Ionicons name="close" size={20} color={colors.goldSoft} />
+        </Pressable>
+      </SafeAreaView>
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.header}>
           <EagleLogo size={42} />
@@ -172,18 +196,14 @@ export default function LoginScreen() {
         {method === 'phone' ? (
           <Field>
             <Text style={styles.label}>{t('auth.phone')}</Text>
-            <View style={styles.inputRow}>
-              <Text style={styles.prefix}>963+</Text>
-              <TextInput
-                style={styles.input}
-                value={phone}
-                onChangeText={setPhone}
-                placeholder={t('auth.phonePlaceholder')}
-                placeholderTextColor="rgba(247,244,236,0.35)"
-                keyboardType="number-pad"
-                maxLength={9}
-              />
-            </View>
+            <PhoneInput
+              variant="dark"
+              country={phoneCountry}
+              onCountryChange={setPhoneCountry}
+              value={phone}
+              onChangeText={setPhone}
+              placeholder={t('auth.phonePlaceholder')}
+            />
           </Field>
         ) : (
           <>
@@ -204,33 +224,28 @@ export default function LoginScreen() {
                 />
               </View>
             </Field>
-            <Field>
-              <Text style={styles.label}>{t('auth.password')}</Text>
-              <View style={styles.inputRow}>
-                <Ionicons name="lock-closed-outline" size={14} color={colors.goldSoft} />
-                <TextInput
-                  style={styles.input}
-                  value={password}
-                  onChangeText={setPassword}
-                  placeholder={t('auth.passwordPlaceholder')}
-                  placeholderTextColor="rgba(247,244,236,0.35)"
-                  secureTextEntry
-                  textContentType="password"
-                  textAlign="left"
-                />
-              </View>
-            </Field>
-            {mode === 'signin' && (
-              <Pressable onPress={handleForgotPassword} style={styles.forgotRow}>
-                <Text style={styles.forgotText}>{t('auth.forgotPassword')}</Text>
-              </Pressable>
+            {mode === 'signup' && (
+              <Field>
+                <Text style={styles.label}>{t('auth.password')}</Text>
+                <View style={styles.inputRow}>
+                  <Ionicons name="lock-closed-outline" size={14} color={colors.goldSoft} />
+                  <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder={t('auth.passwordPlaceholder')}
+                    placeholderTextColor="rgba(247,244,236,0.35)"
+                    secureTextEntry
+                    textContentType="password"
+                    textAlign="left"
+                  />
+                </View>
+              </Field>
             )}
           </>
         )}
 
-        {(method === 'phone' || mode === 'signup') && (
-          <Text style={styles.otpHint}>{method === 'phone' ? t('auth.otpHintPhone') : t('auth.otpHintEmail')}</Text>
-        )}
+        <Text style={styles.otpHint}>{method === 'phone' ? t('auth.otpHintPhone') : t('auth.otpHintEmail')}</Text>
 
         {!isSupabaseConfigured && <Text style={styles.warning}>{t('auth.supabaseNotConfigured')}</Text>}
 
@@ -255,6 +270,24 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
     backgroundColor: colors.pine,
+  },
+  closeButtonSafeArea: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    alignItems: 'flex-end',
+  },
+  closeButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    marginTop: spacing.sm,
+    marginHorizontal: spacing.lg,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.1)',
   },
   container: {
     flexGrow: 1,
@@ -362,16 +395,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.ivory,
     padding: 0,
-  },
-  forgotRow: {
-    alignItems: 'flex-end',
-    marginBottom: spacing.sm,
-  },
-  forgotText: {
-    fontFamily: fonts.headingBold,
-    fontSize: 10,
-    color: colors.goldSoft,
-    textDecorationLine: 'underline',
   },
   otpHint: {
     fontFamily: fonts.bodyRegular,

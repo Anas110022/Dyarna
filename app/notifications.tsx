@@ -1,14 +1,18 @@
-import { useCallback, useState } from 'react';
-import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useMemo, useState } from 'react';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useI18n } from '@/src/i18n';
-import { colors, fonts, radii, spacing } from '@/src/theme';
+import { fonts, fontSizes, radii, spacing } from '@/src/theme';
+import { useTheme } from '@/src/theme/ThemeContext';
+import type { ThemeColors } from '@/src/theme/themeTokens';
 import { supabase } from '@/src/lib/supabase';
 import { fetchNotifications, markAllNotificationsRead, markNotificationRead, type NotificationItem } from '@/src/lib/account';
 import { AuthRequiredScreen } from '@/src/components/AuthPrompt';
+import { AppHeader } from '@/src/components/AppHeader';
+import { EmptyState } from '@/src/components/EmptyState';
+import { LoadingState } from '@/src/components/LoadingState';
 
 function timeAgo(iso: string, t: (key: string, params?: Record<string, string | number>) => string): string {
   const diffMs = Date.now() - new Date(iso).getTime();
@@ -23,6 +27,8 @@ function timeAgo(iso: string, t: (key: string, params?: Record<string, string | 
 
 export default function NotificationsScreen() {
   const { t } = useI18n();
+  const { colors: theme } = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
 
   const [userId, setUserId] = useState<string | null>(null);
   const [items, setItems] = useState<NotificationItem[]>([]);
@@ -124,40 +130,27 @@ export default function NotificationsScreen() {
 
   return (
     <View style={styles.flex}>
-      <SafeAreaView edges={['top']} style={styles.header}>
-        <Pressable style={styles.headerBack} onPress={() => router.back()} hitSlop={12}>
-          <Ionicons name="chevron-forward" size={20} color={colors.pine} />
-        </Pressable>
-        <Text style={styles.headerTitle}>{t('account.notifications')}</Text>
-        {hasUnread ? (
-          <Pressable onPress={handleMarkAllRead} disabled={markingAll} style={styles.markAllButton} hitSlop={8}>
-            <Text style={styles.markAllText}>{t('notifications.markAllRead')}</Text>
-          </Pressable>
-        ) : (
-          <View style={styles.headerBack} />
-        )}
-      </SafeAreaView>
+      <AppHeader
+        title={t('account.notifications')}
+        rightElement={
+          hasUnread ? (
+            <Pressable onPress={handleMarkAllRead} disabled={markingAll} style={styles.markAllButton} hitSlop={8}>
+              <Text style={styles.markAllText}>{t('notifications.markAllRead')}</Text>
+            </Pressable>
+          ) : undefined
+        }
+      />
 
       {loading ? (
-        <View style={styles.centered}>
-          <ActivityIndicator color={colors.pine} />
-        </View>
+        <LoadingState />
       ) : error ? (
-        <View style={styles.centered}>
-          <Ionicons name="cloud-offline-outline" size={32} color={colors.inkSoft} />
-          <Text style={styles.emptyText}>{t('account.loadError')}</Text>
-        </View>
+        <EmptyState icon="cloud-offline-outline" message={t('account.loadError')} />
       ) : (
         <FlatList
           data={items}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}
-          ListEmptyComponent={
-            <View style={styles.centered}>
-              <Ionicons name="notifications-outline" size={32} color={colors.inkSoft} />
-              <Text style={styles.emptyText}>{t('notifications.empty')}</Text>
-            </View>
-          }
+          ListEmptyComponent={<EmptyState icon="notifications-outline" message={t('notifications.empty')} />}
           renderItem={({ item }) => (
             <Pressable style={styles.row} onPress={() => handlePress(item)}>
               <View style={[styles.iconCircle, item.isRead && styles.iconCircleRead]}>
@@ -178,7 +171,7 @@ export default function NotificationsScreen() {
                             : 'shield-checkmark'
                   }
                   size={16}
-                  color={item.isRead ? colors.inkSoft : '#2BAA5E'}
+                  color={item.isRead ? theme.mutedText : theme.success}
                 />
               </View>
               <View style={styles.info}>
@@ -197,46 +190,35 @@ export default function NotificationsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  flex: { flex: 1, backgroundColor: colors.ivory },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: spacing.lg,
-    paddingBottom: spacing.sm,
-    backgroundColor: colors.ivory,
-  },
-  headerBack: { width: 32, height: 32, alignItems: 'center', justifyContent: 'center' },
-  markAllButton: { paddingVertical: spacing.xs, paddingHorizontal: spacing.xs },
-  markAllText: { fontFamily: fonts.headingBold, fontSize: 10.5, color: colors.pine },
-  headerTitle: { fontFamily: fonts.headingBold, fontSize: 15, color: colors.pine },
+function createStyles(theme: ThemeColors) {
+  return StyleSheet.create({
+    flex: { flex: 1, backgroundColor: theme.background },
+    markAllButton: { paddingVertical: spacing.xs, paddingHorizontal: spacing.xs },
+    markAllText: { fontFamily: fonts.headingBold, fontSize: fontSizes.caption, color: theme.headingText },
 
-  centered: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.sm, padding: spacing.xxl },
-  emptyText: { fontFamily: fonts.bodyMedium, fontSize: 12, color: colors.inkSoft },
-
-  listContent: { padding: spacing.lg, flexGrow: 1 },
-  row: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-    backgroundColor: colors.white,
-    borderRadius: radii.md,
-    padding: spacing.md,
-    marginBottom: spacing.sm,
-    alignItems: 'flex-start',
-  },
-  iconCircle: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    backgroundColor: '#EAF6EE',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  iconCircleRead: { backgroundColor: colors.ivory2 },
-  info: { flex: 1, gap: 2 },
-  title: { fontFamily: fonts.headingBold, fontSize: 11.5, color: colors.ink },
-  body: { fontFamily: fonts.bodyRegular, fontSize: 10.5, color: colors.inkSoft },
-  time: { fontFamily: fonts.bodyRegular, fontSize: 9, color: '#C7BFA6', marginTop: 2 },
-  unreadDot: { width: 7, height: 7, borderRadius: 3.5, backgroundColor: colors.gold, marginTop: 4 },
-});
+    listContent: { padding: spacing.lg, flexGrow: 1 },
+    row: {
+      flexDirection: 'row',
+      gap: spacing.sm,
+      backgroundColor: theme.surface,
+      borderRadius: radii.md,
+      padding: spacing.md,
+      marginBottom: spacing.sm,
+      alignItems: 'flex-start',
+    },
+    iconCircle: {
+      width: 34,
+      height: 34,
+      borderRadius: 17,
+      backgroundColor: `${theme.success}20`,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    iconCircleRead: { backgroundColor: theme.surfaceAlt },
+    info: { flex: 1, gap: 2 },
+    title: { fontFamily: fonts.headingBold, fontSize: fontSizes.bodySmall, color: theme.bodyText },
+    body: { fontFamily: fonts.bodyRegular, fontSize: fontSizes.caption, color: theme.mutedText },
+    time: { fontFamily: fonts.bodyRegular, fontSize: 9, color: theme.mutedText, marginTop: 2 },
+    unreadDot: { width: 7, height: 7, borderRadius: 3.5, backgroundColor: theme.accentGold, marginTop: 4 },
+  });
+}

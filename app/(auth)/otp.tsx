@@ -8,6 +8,7 @@ import { sendPhoneOtp, resendEmailSignupOtp, verifyEmailSignupOtp, verifyPhoneOt
 import { colors, fonts, spacing } from '@/src/theme';
 import { OtpInput } from '@/src/components/OtpInput';
 import { PillButton } from '@/src/components/PillButton';
+import { resolveRedirectHref } from '@/src/components/AuthPrompt';
 
 // Supabase's own OTP codes are 6 digits (the design mockup shows 4 as a
 // placeholder illustration, but the real code sent by Supabase is 6 digits).
@@ -16,7 +17,12 @@ const RESEND_SECONDS = 30;
 
 export default function OtpScreen() {
   const { t } = useI18n();
-  const { method, value } = useLocalSearchParams<{ method: 'phone' | 'email'; value: string }>();
+  const { method, value, redirect, intent } = useLocalSearchParams<{
+    method: 'phone' | 'email';
+    value: string;
+    redirect?: string;
+    intent?: string;
+  }>();
 
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
@@ -59,7 +65,10 @@ export default function OtpScreen() {
       showError(translateOtpError(error));
       return;
     }
-    router.replace('/(tabs)');
+    // Guest Mode return-to-origin: land back on the exact screen (and,
+    // where the screen supports it, the exact action) the guest was on
+    // before signing in — not always /(tabs).
+    router.replace(resolveRedirectHref(redirect, intent));
   };
 
   const handleResend = async () => {
