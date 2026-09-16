@@ -1,5 +1,5 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { I18nManager } from 'react-native';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { DevSettings, I18nManager } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ar from './locales/ar.json';
@@ -34,15 +34,17 @@ function interpolate(template: string, params?: Record<string, string | number>)
   );
 }
 
-function applyRTL(locale: Locale) {
+// I18nManager's RTL/LTR direction only takes visual effect after a JS
+// reload — this returns whether the direction actually changed so the
+// caller (setLocale) knows whether it needs to trigger one.
+function applyRTL(locale: Locale): boolean {
   const shouldBeRTL = locale === 'ar';
   if (I18nManager.isRTL !== shouldBeRTL) {
     I18nManager.allowRTL(true);
     I18nManager.forceRTL(shouldBeRTL);
-    // NOTE: I18nManager only takes effect after a full native reload. The
-    // language toggle in Account settings (later phase) must trigger an
-    // app restart (e.g. via expo-updates) right after calling setLocale.
+    return true;
   }
+  return false;
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
@@ -61,7 +63,13 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const setLocale = useCallback(async (next: Locale) => {
     await AsyncStorage.setItem(LOCALE_STORAGE_KEY, next);
     setLocaleState(next);
-    applyRTL(next);
+    const directionChanged = applyRTL(next);
+    // Text updates instantly via context either way; the RTL/LTR layout
+    // direction itself needs a JS reload to actually flip, so only reload
+    // when the direction really changed (ar<->en), not on every toggle.
+    if (directionChanged) {
+      DevSettings.reload();
+    }
   }, []);
 
   const t = useCallback(
@@ -69,13 +77,17 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     [locale]
   );
 
+  // Every consumer using useI18n() re-renders whenever this value's
+  // identity changes — without this memo it was a fresh object literal on
+  // every I18nProvider render, cascading to effectively the whole app
+  // (I18nProvider wraps everything). Memoized so it only changes identity
+  // when locale actually changes (t and setLocale are already stable
+  // useCallbacks).
+  const value = useMemo(() => ({ locale, isRTL: locale === 'ar', t, setLocale }), [locale, t, setLocale]);
+
   if (!ready) return null;
 
-  return (
-    <I18nContext.Provider value={{ locale, isRTL: locale === 'ar', t, setLocale }}>
-      {children}
-    </I18nContext.Provider>
-  );
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
 export function useI18n() {
