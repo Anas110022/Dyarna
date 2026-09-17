@@ -140,7 +140,7 @@ export default function AdminVerificationQueueScreen() {
           ListEmptyComponent={<EmptyState icon="shield-checkmark-outline" message="ما في طلبات توثيق حاليًا" />}
           renderItem={({ item }) => (
             <View style={styles.card}>
-              <Text style={styles.name}>{item.profiles?.full_name ?? 'مستخدم ديارنا'}</Text>
+              <Text style={styles.name}>{item.profiles?.full_name ?? 'مستخدم عقارك'}</Text>
               <Text style={styles.meta}>{item.profiles?.email ?? item.profiles?.phone ?? ''}</Text>
               {item.advertiser_type && (
                 <Text style={styles.advertiserTypeTag}>{ADVERTISER_TYPE_LABEL[item.advertiser_type] ?? item.advertiser_type}</Text>

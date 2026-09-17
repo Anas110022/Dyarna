@@ -49,7 +49,7 @@ function TargetSummary({ report, theme }: { report: AdminReport; theme: ThemeCol
   if (report.target_type === 'profile' && 'full_name' in report.target) {
     return (
       <Pressable onPress={() => router.push(`/profile/${report.target_id}`)}>
-        <Text style={styles.targetLink}>{report.target.full_name ?? 'مستخدم ديارنا'}</Text>
+        <Text style={styles.targetLink}>{report.target.full_name ?? 'مستخدم عقارك'}</Text>
       </Pressable>
     );
   }
@@ -155,7 +155,7 @@ export default function AdminReportsQueueScreen() {
               {item.details && <Text style={styles.meta}>{item.details}</Text>}
 
               <Text style={styles.meta}>
-                المُبلِّغ: {item.reporter?.full_name ?? 'مستخدم ديارنا'} · {item.created_at.slice(0, 10)}
+                المُبلِّغ: {item.reporter?.full_name ?? 'مستخدم عقارك'} · {item.created_at.slice(0, 10)}
               </Text>
 
               <View style={styles.actionsRow}>

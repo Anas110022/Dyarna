@@ -1,9 +1,12 @@
 {
   "common": {
-    "appName": "Dyarna",
+    "appName": "AQARAK",
     "comingSoon": "Coming soon",
     "comingSoonBody": "This section is still in development — it will be ready in a later phase.",
     "retry": "Retry"
+  },
+  "legal": {
+    "lastUpdated": "Last updated"
   },
   "tabs": {
     "account": "Account",
@@ -41,7 +44,7 @@
     "forgotPassword": "Forgot password?",
     "otpHintPhone": "You'll receive a verification code by SMS",
     "otpHintEmail": "You'll receive a verification code at this email",
-    "termsFooter": "By continuing, you agree to Dyarna's Terms of Use\nand Privacy Policy",
+    "termsFooter": "By continuing, you agree to AQARAK's Terms of Use\nand Privacy Policy",
     "ctaSignupPhone": "Send code & create account",
     "ctaSignupEmail": "Send code & create account",
     "ctaSigninPhone": "Send verification code",
@@ -227,13 +230,13 @@
     "pricePlaceholder": "0",
 
     "step5Title": "Review & confirm",
-    "reviewNotice": "Review everything below before submitting — Dyarna's team will review your listing before it appears to visitors.",
+    "reviewNotice": "Review everything below before submitting — AQARAK's team will review your listing before it appears to visitors.",
     "locationLabel": "Location",
 
     "publishedTitle": "Your listing is published!",
     "publishedBody": "It's now visible on the map to every visitor.",
     "submitSuccessTitle": "Your listing was sent for review",
-    "submitSuccessBody": "It'll be visible to visitors once Dyarna's team has verified it.",
+    "submitSuccessBody": "It'll be visible to visitors once AQARAK's team has verified it.",
     "backToHome": "Back to Home",
 
     "errorTitle": "Something went wrong",
@@ -258,14 +261,14 @@
     "allDetails": "All details",
     "locationOnMap": "Location",
     "nearbyServicesTitle": "Nearby services",
-    "unknownOwner": "Dyarna user",
+    "unknownOwner": "AQARAK user",
     "verifiedAccount": "Verified account",
     "contactSectionTitle": "Contact the advertiser",
     "call": "Call",
     "chatInApp": "Message in-app",
     "chatStartError": "Something went wrong starting the conversation, please try again",
     "whatsapp": "WhatsApp",
-    "whatsappMessage": "Hi, I'm interested in the \"{{title}}\" listing on Dyarna.",
+    "whatsappMessage": "Hi, I'm interested in the \"{{title}}\" listing on AQARAK.",
     "noPhoneAvailable": "No phone number is available for this advertiser right now",
     "report": "Report this listing",
     "tapForDistance": "Tap to see distance and time from your location",
@@ -317,27 +320,27 @@
     "signOutConfirmBody": "You'll need to sign in again to post or manage listings.",
     "cancel": "Cancel",
     "loadError": "Couldn't load your account right now, please try again",
-    "currencyNoRealRateNotice": "Dyarna doesn't have a real USD-to-SYP exchange rate yet, so prices stay shown in USD for now. Your preference is saved for when that's available."
+    "currencyNoRealRateNotice": "AQARAK doesn't have a real USD-to-SYP exchange rate yet, so prices stay shown in USD for now. Your preference is saved for when that's available."
   },
   "editProfile": {
     "save": "Save changes",
     "saveError": "Something went wrong saving your profile, please try again",
     "avatarUploadError": "Something went wrong uploading your photo, please try again",
-    "photoPermissionDenied": "Dyarna needs access to your photos to set a profile picture",
-    "photoPermissionDeniedSettingsBody": "Photo access is turned off for Dyarna. Open Settings and allow Photos access to set a profile picture.",
+    "photoPermissionDenied": "AQARAK needs access to your photos to set a profile picture",
+    "photoPermissionDeniedSettingsBody": "Photo access is turned off for AQARAK. Open Settings and allow Photos access to set a profile picture.",
     "openSettings": "Open Settings",
     "photoPickError": "Something went wrong opening your photo library, please try again"
   },
   "verifyAccount": {
     "title": "Account verification",
     "verifiedTitle": "Your account is verified",
-    "verifiedBody": "Your identity has been confirmed by the Dyarna team.",
+    "verifiedBody": "Your identity has been confirmed by the AQARAK team.",
     "pendingTitle": "Your request is being verified",
     "pendingBody": "We'll update your status once verification is complete. This can take a little while — no need to keep the app open.",
     "requiresReviewTitle": "Your request needs extra review",
-    "requiresReviewBody": "The Dyarna team needs a closer look at your submission. We'll update your status once that's done.",
+    "requiresReviewBody": "The AQARAK team needs a closer look at your submission. We'll update your status once that's done.",
     "rejectedNoticeGeneric": "Your document couldn't be verified. Please upload a valid, clear ID document.",
-    "instructions": "Attach a real photo of a government-issued ID (national ID, passport, or driving license) so the Dyarna team can confirm your identity.",
+    "instructions": "Attach a real photo of a government-issued ID (national ID, passport, or driving license) so the AQARAK team can confirm your identity.",
     "documentTypeLabel": "Document type",
     "docTypePassport": "Passport",
     "docTypeNationalId": "National ID",
@@ -366,7 +369,7 @@
     "next": "Next",
     "back": "Back",
     "requirementsTitle": "Verification requirements",
-    "requirementsIntro": "So Dyarna can confirm you're a real person or business, please attach the following. Your listings will stay pending review until you're verified.",
+    "requirementsIntro": "So AQARAK can confirm you're a real person or business, please attach the following. Your listings will stay pending review until you're verified.",
     "personalIdLabel": "Personal ID",
     "greenDeedLabel": "Green deed (الطابو الأخضر)",
     "personalDataLabel": "Personal information",
@@ -647,7 +650,7 @@
     "body": "Sign in to continue and use this feature.",
     "login": "Log in",
     "signup": "Create an account",
-    "accountWelcomeTitle": "Welcome to Dyarna",
+    "accountWelcomeTitle": "Welcome to AQARAK",
     "accountWelcomeBody": "Log in or create an account to enjoy all the features."
   },
   "documentViewer": {
@@ -712,7 +715,7 @@
     "bookingFailed": "Couldn't complete the booking, please try again",
     "bookingUnavailableError": "Those dates are no longer available, try different dates",
     "confirmationTitle": "Booking request sent",
-    "confirmationBody": "Dyarna or the property owner will reach out to confirm your booking.",
+    "confirmationBody": "AQARAK or the property owner will reach out to confirm your booking.",
     "referenceLabel": "Booking reference",
     "backToBookings": "Back to bookings",
     "myBookings": "My bookings",

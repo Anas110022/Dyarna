@@ -7,18 +7,29 @@
 // that prefix since this never needs to reach client JS.
 module.exports = {
   expo: {
-    name: 'Dyarna',
+    // Base/fallback name — used by Android (no per-locale app_name override
+    // is configured below) and as iOS's fallback for any device language
+    // other than ar/en. Real per-locale iOS display names ("عقارك" on
+    // Arabic devices, "AQARAK" on English ones — the only two languages
+    // this app ships) come from the `locales` field below, which is Expo's
+    // documented mechanism for localized CFBundleDisplayName.
+    name: 'AQARAK',
     slug: 'dyarna',
     version: '1.0.0',
     orientation: 'portrait',
     icon: './assets/icon.png',
     scheme: 'dyarna',
     userInterfaceStyle: 'light',
+    locales: {
+      ar: './locales/ar.json',
+      en: './locales/en.json',
+    },
     ios: {
       supportsTablet: true,
       bundleIdentifier: 'com.anonymous.dyarna',
       infoPlist: {
         LSApplicationQueriesSchemes: ['comgooglemaps'],
+        CFBundleLocalizations: ['ar', 'en'],
       },
     },
     android: {
@@ -51,13 +62,13 @@ module.exports = {
       [
         'expo-image-picker',
         {
-          photosPermission: 'ديارنا بتحتاج توصل لصورك عشان تضيفهن على إعلان العقار.',
+          photosPermission: 'عقارك بتحتاج توصل لصورك عشان تضيفهن على إعلان العقار.',
         },
       ],
       [
         'expo-location',
         {
-          locationWhenInUsePermission: 'ديارنا بتحتاج موقعك عشان توريك العقارات القريبة منك على الخريطة.',
+          locationWhenInUsePermission: 'عقارك بتحتاج موقعك عشان توريك العقارات القريبة منك على الخريطة.',
           locationAlwaysAndWhenInUsePermission: false,
           locationAlwaysPermission: false,
           isIosBackgroundLocationEnabled: false,

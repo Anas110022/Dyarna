@@ -136,7 +136,7 @@ export default function AdminListingsQueueScreen() {
 
                 <View style={styles.ownerRow}>
                   <Ionicons name="person-circle-outline" size={16} color={theme.mutedText} />
-                  <Text style={styles.ownerText}>{item.profiles?.full_name ?? 'مستخدم ديارنا'}</Text>
+                  <Text style={styles.ownerText}>{item.profiles?.full_name ?? 'مستخدم عقارك'}</Text>
                   {item.profiles?.is_verified ? (
                     <View style={styles.verifiedBadge}>
                       <Ionicons name="shield-checkmark-outline" size={11} color={theme.accentGold} />

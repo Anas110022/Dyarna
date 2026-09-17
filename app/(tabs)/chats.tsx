@@ -99,7 +99,7 @@ export default function ChatsScreen() {
               )}
               <View style={styles.info}>
                 <Text style={styles.name} numberOfLines={1}>
-                  {item.otherParticipant.fullName ?? 'مستخدم ديارنا'}
+                  {item.otherParticipant.fullName ?? 'مستخدم عقارك'}
                 </Text>
                 <Text style={styles.listingTitle} numberOfLines={1}>
                   {item.listingTitle}

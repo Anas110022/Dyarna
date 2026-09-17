@@ -81,6 +81,17 @@ export function formatDayMonth(iso: string, locale: Locale): string {
   return includeYear ? `${d} ${ENGLISH_MONTHS_SHORT[m - 1]} ${y}` : `${d} ${ENGLISH_MONTHS_SHORT[m - 1]}`;
 }
 
+// Full date, year always included — the format legal documents ("Last
+// updated") need regardless of which year it currently is, unlike
+// formatDayMonth above which drops the year for the common case.
+export function formatFullDate(iso: string, locale: Locale): string {
+  const [y, m, d] = iso.split('-').map(Number);
+  if (locale === 'ar') {
+    return `${toArabicDigits(d)} ${ARABIC_MONTHS[m - 1]} ${toArabicDigits(y)}`;
+  }
+  return `${ENGLISH_MONTHS_LONG[m - 1]} ${d}, ${y}`;
+}
+
 export function formatDateRange(checkInIso: string, checkOutIso: string, locale: Locale): string {
   const arrow = locale === 'ar' ? '←' : '→';
   return `${formatDayMonth(checkInIso, locale)}  ${arrow}  ${formatDayMonth(checkOutIso, locale)}`;

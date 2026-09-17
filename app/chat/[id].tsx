@@ -162,7 +162,7 @@ export default function ChatThreadScreen() {
             </View>
           )}
           <View>
-            <Text style={styles.headerName}>{header.otherParticipant.fullName ?? 'مستخدم ديارنا'}</Text>
+            <Text style={styles.headerName}>{header.otherParticipant.fullName ?? 'مستخدم عقارك'}</Text>
             <Text style={styles.headerListing} numberOfLines={1}>
               {header.listingTitle}
             </Text>
