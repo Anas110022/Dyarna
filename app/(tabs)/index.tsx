@@ -1550,7 +1550,7 @@ function createStyles(theme: ThemeColors) {
       color: theme.headingText,
     },
     governorateSheet: {
-      backgroundColor: theme.background,
+      backgroundColor: theme.elevatedSurface,
       borderTopLeftRadius: radii.lg,
       borderTopRightRadius: radii.lg,
       maxHeight: '70%',
@@ -1759,7 +1759,7 @@ function createStyles(theme: ThemeColors) {
       width: '100%',
     },
     listModalSheet: {
-      backgroundColor: theme.background,
+      backgroundColor: theme.elevatedSurface,
       borderTopLeftRadius: radii.lg,
       borderTopRightRadius: radii.lg,
       maxHeight: '80%',
@@ -1896,7 +1896,7 @@ function createStyles(theme: ThemeColors) {
       color: theme.bodyText,
     },
     filterSheet: {
-      backgroundColor: theme.background,
+      backgroundColor: theme.elevatedSurface,
       borderTopLeftRadius: radii.lg,
       borderTopRightRadius: radii.lg,
       maxHeight: '85%',
