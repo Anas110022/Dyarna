@@ -34,6 +34,15 @@ export async function fetchAmenityTypes(): Promise<{ data: AmenityType[]; error:
   };
 }
 
+// phone/email are no longer selectable columns on public.profiles for
+// anyone, including the row's own owner (supabase/migrations/
+// 20260930030000_profiles_privacy_fix.sql) — direct column-level access
+// was the actual security gap (any client could read ANY user's phone/
+// email, not just their own). The owner reads their own two private
+// fields through get_own_contact_info() instead, a SECURITY DEFINER RPC
+// scoped to auth.uid() with no caller-supplied id. Everything else here
+// still comes straight off the table — those columns stayed publicly
+// selectable, unaffected by the fix.
 export async function fetchOwnProfile(userId: string): Promise<{
   fullName: string | null;
   phone: string | null;
@@ -44,20 +53,20 @@ export async function fetchOwnProfile(userId: string): Promise<{
   createdAt: string | null;
   error: string | null;
 }> {
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('full_name, phone, email, avatar_url, is_verified, auth_method, created_at')
-    .eq('id', userId)
-    .maybeSingle();
+  const [{ data, error }, { data: contactRaw, error: contactError }] = await Promise.all([
+    supabase.from('profiles').select('full_name, avatar_url, is_verified, auth_method, created_at').eq('id', userId).maybeSingle(),
+    supabase.rpc('get_own_contact_info').maybeSingle(),
+  ]);
+  const contact = contactRaw as { phone: string | null; email: string | null } | null;
   return {
     fullName: data?.full_name ?? null,
-    phone: data?.phone ?? null,
-    email: data?.email ?? null,
+    phone: contact?.phone ?? null,
+    email: contact?.email ?? null,
     avatarUrl: data?.avatar_url ?? null,
     isVerified: data?.is_verified ?? false,
     authMethod: data?.auth_method ?? null,
     createdAt: data?.created_at ?? null,
-    error: error?.message ?? null,
+    error: error?.message ?? contactError?.message ?? null,
   };
 }
 
