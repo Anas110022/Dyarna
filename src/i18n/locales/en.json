@@ -360,6 +360,10 @@
     "uploadError": "Something went wrong uploading your document, please try again",
     "submitError": "Something went wrong submitting your request, please try again"
   },
+  "identityVerification": {
+    "errorMissingDoc": "Please attach your ID document",
+    "continue": "Continue"
+  },
   "advertiserVerification": {
     "title": "Advertiser verification",
     "whoAreYouTitle": "Who are you?",

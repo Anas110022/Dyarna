@@ -49,8 +49,7 @@ import {
 } from '@/src/lib/listingTypes';
 import { SYRIA_DEFAULT_REGION } from '@/src/lib/mapRegion';
 import { AuthRequiredScreen } from '@/src/components/AuthPrompt';
-import type { AdvertiserType } from '@/src/lib/account';
-import { AdvertiserRequirementsStep, AdvertiserTypeStep } from '@/src/components/AdvertiserVerificationFlow';
+import { IdentityVerificationStep } from '@/src/components/IdentityVerificationStep';
 import { AppHeader } from '@/src/components/AppHeader';
 import { LoadingState } from '@/src/components/LoadingState';
 import { FormInput } from '@/src/components/FormInput';
@@ -64,9 +63,6 @@ type LandType = 'residential' | 'agricultural' | 'commercial';
 type Furnished = 'unfurnished' | 'partial' | 'full';
 
 type WizardForm = {
-  // Chosen on the real "هل أنت؟" screen — always the first thing shown,
-  // every time — and carried through the rest of this posting attempt.
-  advertiserType: AdvertiserType | null;
   dealType: DealType | null;
   category: ListingCategory | null;
   photos: { uri: string }[];
@@ -105,7 +101,6 @@ type WizardForm = {
 };
 
 const INITIAL_FORM: WizardForm = {
-  advertiserType: null,
   dealType: null,
   category: null,
   photos: [],
@@ -172,19 +167,18 @@ export default function PostListingScreen() {
   const [userId, setUserId] = useState<string | null>(null);
   const [authRequired, setAuthRequired] = useState(false);
   const [initializing, setInitializing] = useState(true);
-  // The real "هل أنت؟" -> "متطلبات التوثيق" gate. Both default to false
-  // (gate shown) and only start true if the init effect below finds the
-  // user's REAL profiles.is_verified already true — the one flag only the
+  // The real identity-verification gate. Defaults to false (gate shown)
+  // and only starts true if the init effect below finds the user's REAL
+  // profiles.is_verified already true — the one flag only the
   // admin-verification Edge Function ever sets, after an admin actually
   // approves a submitted request. This is deliberately NOT "has the user
-  // ever submitted any verification_requests row" (that was the earlier,
+  // ever submitted any verification_requests row" (that was an earlier,
   // real bug: submitting — even a still-pending or since-rejected
   // request — silently skipped the gate). Uploading a document is never
-  // enough on its own here; only a real admin approval is.
-  // requirementsSubmitted can also become true the normal way, mid-session,
-  // once AdvertiserRequirementsStep's own real upload+submit succeeds.
-  const [typeChosen, setTypeChosen] = useState(false);
-  const [requirementsSubmitted, setRequirementsSubmitted] = useState(false);
+  // enough on its own here; only a real admin approval is. Also becomes
+  // true the normal way, mid-session, once IdentityVerificationStep's own
+  // real upload+submit succeeds.
+  const [verificationSubmitted, setVerificationSubmitted] = useState(false);
   const [governorates, setGovernorates] = useState<Governorate[]>([]);
   const [governoratePickerOpen, setGovernoratePickerOpen] = useState(false);
   const [amenityTypes, setAmenityTypes] = useState<AmenityType[]>([]);
@@ -224,13 +218,9 @@ export default function PostListingScreen() {
         update('contactPhoneLocal', local);
       }
       // Real, admin-approved verification already on file — skip straight
-      // to the listing wizard instead of asking again. advertiserType stays
-      // null here (it's only ever read by the two gate steps themselves,
-      // never by the wizard or by createListing/publishListingIfEligible),
-      // so there's nothing else to restore.
+      // to the listing wizard instead of asking again.
       if (isVerified) {
-        setTypeChosen(true);
-        setRequirementsSubmitted(true);
+        setVerificationSubmitted(true);
       }
 
       const { data: govs } = await fetchGovernorates();
@@ -486,45 +476,18 @@ export default function PostListingScreen() {
     return <LoadingState />;
   }
 
-  // "هل أنت؟" is the real, absolute first screen of إضافة إعلان — shown
-  // before the property type/بيع-إيجار/any of the existing 5 steps, unless
-  // the init effect above already found a real admin-approved
-  // profiles.is_verified=true for this user, in which case both this step
-  // and the documents step below are skipped entirely (typeChosen and
-  // requirementsSubmitted both start true). The choice made here is stored
-  // in form.advertiserType so it persists through the rest of this posting
-  // attempt and feeds the documents step below.
-  if (!typeChosen) {
+  // The real identity-verification step — the absolute first screen of
+  // إضافة إعلان, shown before the property type/بيع-إيجار/any of the
+  // existing 5 steps, unless the init effect above already found a real
+  // admin-approved profiles.is_verified=true for this user. Uploading a
+  // document here is never enough on its own — publish itself stays
+  // blocked server-side (publish_listing_if_eligible) until an admin
+  // actually approves the resulting verification_requests row.
+  if (!verificationSubmitted && userId) {
     return (
       <View style={styles.flex}>
-        <AppHeader title={t('advertiserVerification.title')} onBack={() => router.back()} />
-        <AdvertiserTypeStep
-          value={form.advertiserType}
-          onNext={(type) => {
-            update('advertiserType', type);
-            setTypeChosen(true);
-          }}
-        />
-      </View>
-    );
-  }
-
-  // The real documents/requirements step — shown right after "هل أنت؟"
-  // unless the user is already really verified (see the init effect and
-  // the comment on the typeChosen/requirementsSubmitted state above).
-  // Uploading a document here is still never enough on its own — publish
-  // itself stays blocked server-side (publish_listing_if_eligible) until
-  // an admin actually approves the resulting verification_requests row.
-  if (!requirementsSubmitted && userId && form.advertiserType) {
-    return (
-      <View style={styles.flex}>
-        <AppHeader title={t('advertiserVerification.title')} onBack={() => setTypeChosen(false)} />
-        <AdvertiserRequirementsStep
-          advertiserType={form.advertiserType}
-          userId={userId}
-          onSubmitted={() => setRequirementsSubmitted(true)}
-          onBack={() => setTypeChosen(false)}
-        />
+        <AppHeader title={t('verifyAccount.title')} onBack={() => router.back()} />
+        <IdentityVerificationStep userId={userId} onSubmitted={() => setVerificationSubmitted(true)} />
       </View>
     );
   }

@@ -360,6 +360,10 @@
     "uploadError": "حدث خطأ أثناء رفع المستند، يرجى المحاولة مرة أخرى",
     "submitError": "حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى"
   },
+  "identityVerification": {
+    "errorMissingDoc": "الرجاء إرفاق وثيقة الهوية",
+    "continue": "متابعة"
+  },
   "advertiserVerification": {
     "title": "توثيق المعلن",
     "whoAreYouTitle": "هل أنت؟",

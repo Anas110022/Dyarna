@@ -29,8 +29,7 @@ import { fetchGovernorates, fetchOwnProfile, type Governorate } from '@/src/lib/
 import { reverseGeocode } from '@/src/lib/geocoding';
 import { SYRIA_DEFAULT_REGION } from '@/src/lib/mapRegion';
 import { AuthRequiredScreen } from '@/src/components/AuthPrompt';
-import type { AdvertiserType } from '@/src/lib/account';
-import { AdvertiserRequirementsStep, AdvertiserTypeStep } from '@/src/components/AdvertiserVerificationFlow';
+import { IdentityVerificationStep } from '@/src/components/IdentityVerificationStep';
 import { TimePicker } from '@/src/components/TimePicker';
 import { AvailabilityToggleCalendar } from '@/src/components/AvailabilityToggleCalendar';
 import { AppHeader } from '@/src/components/AppHeader';
@@ -99,7 +98,6 @@ function parseIntOrNull(raw: string): number | null {
 }
 
 type WizardForm = {
-  advertiserType: AdvertiserType | null;
   bookingType: BookingListingType | null;
   photos: { uri: string }[];
   title: string;
@@ -137,7 +135,6 @@ type WizardForm = {
 };
 
 const INITIAL_FORM: WizardForm = {
-  advertiserType: null,
   bookingType: null,
   photos: [],
   title: '',
@@ -217,8 +214,10 @@ export default function PostBookingListingScreen() {
   const [userId, setUserId] = useState<string | null>(null);
   const [authRequired, setAuthRequired] = useState(false);
   const [initializing, setInitializing] = useState(true);
-  const [typeChosen, setTypeChosen] = useState(false);
-  const [requirementsSubmitted, setRequirementsSubmitted] = useState(false);
+  // See app/post-listing.tsx's identical gate for the full rationale —
+  // only starts true if the init effect below finds a real admin-approved
+  // profiles.is_verified already true for this user.
+  const [verificationSubmitted, setVerificationSubmitted] = useState(false);
   const [governorates, setGovernorates] = useState<Governorate[]>([]);
   const [governoratePickerOpen, setGovernoratePickerOpen] = useState(false);
   const [amenityTypes, setAmenityTypes] = useState<BookingAmenityType[]>([]);
@@ -259,8 +258,7 @@ export default function PostBookingListingScreen() {
         update('contactPhoneLocal', local);
       }
       if (isVerified) {
-        setTypeChosen(true);
-        setRequirementsSubmitted(true);
+        setVerificationSubmitted(true);
       }
 
       const { data: govs } = await fetchGovernorates();
@@ -499,31 +497,12 @@ export default function PostBookingListingScreen() {
     return <AuthRequiredScreen />;
   }
 
-  if (!typeChosen) {
+  // See app/post-listing.tsx's identical gate for the full rationale.
+  if (!verificationSubmitted && userId) {
     return (
       <View style={styles.flex}>
-        <AppHeader title={t('advertiserVerification.title')} onBack={() => router.back()} />
-        <AdvertiserTypeStep
-          value={form.advertiserType}
-          onNext={(type) => {
-            update('advertiserType', type);
-            setTypeChosen(true);
-          }}
-        />
-      </View>
-    );
-  }
-
-  if (!requirementsSubmitted && userId && form.advertiserType) {
-    return (
-      <View style={styles.flex}>
-        <AppHeader title={t('advertiserVerification.title')} onBack={() => setTypeChosen(false)} />
-        <AdvertiserRequirementsStep
-          advertiserType={form.advertiserType}
-          userId={userId}
-          onSubmitted={() => setRequirementsSubmitted(true)}
-          onBack={() => setTypeChosen(false)}
-        />
+        <AppHeader title={t('verifyAccount.title')} onBack={() => router.back()} />
+        <IdentityVerificationStep userId={userId} onSubmitted={() => setVerificationSubmitted(true)} />
       </View>
     );
   }

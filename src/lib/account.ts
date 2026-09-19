@@ -226,11 +226,11 @@ export async function createSupportTicket(userId: string, message: string): Prom
 export type VerificationRequestStatus = 'pending' | 'processing' | 'verified' | 'rejected' | 'requires_review' | 'failed';
 export type VerificationDocumentType = 'passport' | 'national_id' | 'residence_id';
 
-// Real advertiser classification asked before a user's first listing post
-// (see src/components/AdvertiserVerificationFlow.tsx) — extends the same
-// verification_requests row/lifecycle used by the generic /verify-account
-// flow (advertiser_type stays null there), never a separate table/state
-// machine.
+// No longer settable from the client — verification is now a single
+// universal identity check (see src/components/IdentityVerificationStep.tsx),
+// so every new verification_requests row has advertiser_type = null. Kept
+// only so the admin queue (src/lib/admin.ts, app/admin/verification-queue.tsx)
+// can still correctly type/display older requests that do have a value.
 export type AdvertiserType = 'owner' | 'broker' | 'host' | 'developer';
 export type SecondaryDocType = 'green_deed' | 'office_photo';
 

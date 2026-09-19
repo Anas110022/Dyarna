@@ -40,7 +40,7 @@ export type PickedDoc = { uri: string; fileName: string | null; mimeType: string
 //
 // This component deliberately owns no viewer navigation state of its
 // own — `onView` is the caller's job (it pushes app/document-viewer.tsx
-// with the picked doc as route params) — see AdvertiserVerificationFlow.tsx.
+// with the picked doc as route params) — see IdentityVerificationStep.tsx.
 //
 // The preview always uses resizeMode="contain" inside a generously tall,
 // letterboxed box — the entire real document is always visible, nothing
